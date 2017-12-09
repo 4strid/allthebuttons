@@ -1,0 +1,23 @@
+@viewport {
+	max-zoom: 0.8;
+}
+
+body {
+	white-space: nowrap;
+	overflow: scroll;
+}
+
+button {
+  margin: 0.5px 0.5px 0.5px 0.5px;
+  background-color: #EEE;
+  border-radius: 4px;
+  moz-border-radius: 4px;
+  webkit-border-radius: 4px;
+  height: 64px;
+  width: 64px; 
+  /*change border colour*/
+	border-style: solid;
+	border-color: #666 #444 #222 #666;
+	border-width: 1px 2px 3px 2px;
+	-webkit-user-select: none;
+}

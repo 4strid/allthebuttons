@@ -1,0 +1,63 @@
+@viewport {
+	max-zoom: 0.8;
+}
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+	/*width: 2700px;*/
+	margin: 0;
+	padding: 0;
+	overflow: scroll;
+}
+
+button {
+  margin: 0.5px 0.5px 0.5px 0.5px;
+  background-color: #EEE;
+  border-radius: 4px;
+  moz-border-radius: 4px;
+  webkit-border-radius: 4px;
+  height: 64px;
+  width: 64px; 
+  /*change border colour*/
+	border-style: solid;
+	border-color: #666 #444 #222 #666;
+	border-width: 1px 2px 3px 2px;
+	-webkit-user-select: none;
+}
+
+main {
+	position: relative;
+}
+
+div {
+	position: absolute;
+	width: 1300px;
+	animation: fadein 1s;
+}
+
+@keyframes fadein {
+	from { opacity: 0 }
+	to   { opacity: 1 }
+}
+
+button.zero {
+	background-color: #eee;
+}
+
+button.green {
+	background-color: #5f5;
+}
+
+button.blue {
+	background-color: #55f;
+}
+
+button.red {
+	background-color: #f55;
+}
