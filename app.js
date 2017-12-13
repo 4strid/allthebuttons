@@ -60,12 +60,15 @@ createStatic({
 io.on('connection', function(socket) {
 	//io.to(socket.id).emit('load', database);
 	socket.on('request', function (chunk) {
-		db.load(chunk, function (err, data) {
-			console.log(err)
-			socket.emit('data', {
-				chunk: chunk,
-				data: data
-			})
+		console.log('please load chunk ', chunk)
+		db.load(chunk, function (data) {
+			console.log('data', data)
+			if (data !== null) {
+				socket.emit('data', {
+					chunk: chunk,
+					data: data
+				})
+			}
 		})
 	})
 	socket.on('press', function (press) {
@@ -74,6 +77,7 @@ io.on('connection', function(socket) {
 		//} else {
 			//database[press.id] = database[press.id] ^ 1;
 		//}
+		console.log('please press', press.chunk, press.i)
 		db.press(press, function (err) {
 			console.log(err)
 		})

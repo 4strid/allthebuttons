@@ -18,6 +18,7 @@
 		this.el = document.createElement('button');
 		this.el.className = 'i' + index
 		this.chunk = chunk
+		this.i = index
 	}
 	Button.prototype = {
 		press: function () {
@@ -33,14 +34,14 @@
 			this.el.classList.add(colors[this.color])
 		},
 		setColor: function (color) {
-			this.color = color;
+			this.color = Number(color);
 			this.updateColor();
 		},
 		mousedown: function (event) {
 			this.pressed = true;
 			this.timeout = setTimeout(() => {
 				this.longpress();
-				socket.emit('press', {chunk: this.chunk, i: this.index, long:true});
+				socket.emit('press', {chunk: this.chunk, i: this.i, long:true});
 				this.pressed = false;
 			}, 400);
 		},
@@ -48,7 +49,7 @@
 			if (this.pressed) {
 				clearTimeout(this.timeout);
 				this.press();
-				socket.emit('press', {chunk: this.chunk, id: this.id});
+				socket.emit('press', {chunk: this.chunk, i: this.i});
 				this.pressed = false;
 			}
 		}
@@ -59,12 +60,15 @@
 		this.buttons = [];
 		this.location = [x, y]
 		this.el = document.createElement('div');
+		socket.emit('request', this.location)
 		for (var i = 0; i < 400; i++) {
 			var button = new Button(this.location, i);
 			this.buttons[i] = button;
 			this.el.appendChild(button.el);
 		}
 		this.el.addEventListener('mousedown', event => {
+			console.log('mousedown')
+			console.log(event.target)
 			this.findButton(event.target).mousedown()
 		})
 
@@ -91,6 +95,7 @@
 						.split(' ')
 						.filter(cls => cls[0] === 'i')[0]
 						.replace('i','')
+		console.log(i, this.buttons[i])
 		return this.buttons[i]
 	}
 
@@ -149,6 +154,15 @@
 			this.position = [x, y]
 			this.loadSurroundings()
 		}
+		this.getPanel = function (chunk) {
+			if (!this.live[chunk[X]]) {
+				return null
+			}
+			if (!this.live[chunk[X]][chunk[Y]]) {
+				return null
+			}
+			return this.live[chunk[X]][chunk[Y]]
+		}
 
 		this.loadSurroundings()
 	}
@@ -162,16 +176,23 @@
 		view.scroll()
 	})
 
-	socket.on('load', function (data) {
-		for (var i in data) {
-			panel.buttons[i].setColor(data[i]);
+	socket.on('data', function (res) {
+		//if ()
+		const panel = view.getPanel(res.chunk)
+		if (panel !== null) {
+			const buttons = res.data.split('')
+			for (var i in buttons) {
+				panel.buttons[i].setColor(buttons[i]);
+			}
 		}
 	});
 
 	socket.on('press', function (press) {
-
-		var button = panel.buttons[press.id];
-		press.long ? button.longpress() : button.press();
+		const panel = view.getPanel(press.chunk)
+		if (panel !== null) {
+			var button = panel.buttons[press.i];
+			press.long ? button.longpress() : button.press();
+		}
 	});
 
 
