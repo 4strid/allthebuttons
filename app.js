@@ -3,7 +3,7 @@ const fs = require('fs')
 const   compatible = require('diet-connect')
 const       server = require('diet')
 const          app = server()
-app.listen('http://localhost:3000')
+app.listen('http://ctrl-alt-create.net')
 const           io = require('socket.io')(app.server)
 const createStatic = require('connect-static')
 
@@ -11,7 +11,7 @@ const           db = require('./lib/db')
 
 // static middleware
 createStatic({
-	dir: 'static',
+	dir: __dirname + '/' + 'static',
 	aliases: [['/','/index.html']]
 }, function (err, static) {
 	if (err) {
