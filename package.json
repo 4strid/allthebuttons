@@ -1,13 +1,13 @@
 {
-  "name": "100mil",
+  "name": "infinity",
   "version": "1.0.0",
-  "description": "100 million buttons to press",
-  "main": "index.js",
+  "description": "Buttons as far as the eye can see",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Peter Fesz-Nguyen",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "connect-static": "^1.5.2",
     "diet": "^0.16.0",

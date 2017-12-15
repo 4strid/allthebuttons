@@ -52,3 +52,5 @@ io.on('connection', function(socket) {
 		console.log(message);
 	});
 });
+
+module.exports = app
