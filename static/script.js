@@ -19,6 +19,7 @@
 		this.el.className = 'i' + index
 		this.chunk = chunk
 		this.i = index
+		this.updateColor()
 	}
 	Button.prototype = {
 		press: function () {
@@ -56,33 +57,40 @@
 	};
 
 	// 20x20
-	function Panel (x, y) {
+	// chunk is the serverside chunk to send data to/from
+	// x, y are the panel's position on the page
+	function Panel (chunk, x, y) {
 		this.buttons = [];
-		this.location = [x, y]
 		this.el = document.createElement('div');
-		socket.emit('request', this.location)
+		socket.emit('request', chunk)
 		for (var i = 0; i < 400; i++) {
-			var button = new Button(this.location, i);
+			var button = new Button(chunk, i);
 			this.buttons[i] = button;
 			this.el.appendChild(button.el);
 		}
 		this.el.addEventListener('mousedown', event => {
-			console.log('mousedown')
-			console.log(event.target)
-			this.findButton(event.target).mousedown()
+			if (event.target.type) {
+				this.findButton(event.target).mousedown()
+			}
 		})
 
 		this.el.addEventListener('mouseup', event => {
-			this.findButton(event.target).mouseup()
+			if (event.target.type) {
+				this.findButton(event.target).mouseup()
+			}
 		})
 
 		this.el.addEventListener('touchstart', event => {
-			this.findButton(event.target).mousedown()
+			if (event.target.type) {
+				this.findButton(event.target).mousedown()
+			}
 		})
 
 		this.el.addEventListener('touchend', event => {
 			event.preventDefault();
-			this.findButton(event.target).mouseup()
+			if (event.target.type) {
+				this.findButton(event.target).mouseup()
+			}
 		})
 
 		this.el.style.top = CENTER + y * 1300 + 0.5 + 'px'
@@ -95,14 +103,15 @@
 						.split(' ')
 						.filter(cls => cls[0] === 'i')[0]
 						.replace('i','')
-		console.log(i, this.buttons[i])
 		return this.buttons[i]
 	}
 
 	function View (xpos, ypos) {
 		const X = 0
 		const Y = 1
+
 		this.position = [xpos, ypos]
+		this.origin = [xpos, ypos]
 		this.live = {}
 		this.surroundingChunks = function (position) {
 			var chunks = []
@@ -120,7 +129,7 @@
 				if (x[chunk[Y]]) {
 					return
 				}
-				x[chunk[Y]] = new Panel(chunk[X], chunk[Y])
+				x[chunk[Y]] = new Panel(chunk, chunk[X] - this.origin[X], chunk[Y] - this.origin[Y])
 			})
 		}
 		// removes all chunks not in savedChunks
@@ -149,9 +158,19 @@
 			this.removeChunks(chunks)
 		}
 		this.scroll = function () {
+			// panel coordinates
 			const x = Math.round((window.scrollX - CENTER) / 1300)
 			const y = Math.round((window.scrollY - CENTER) / 1300)
-			this.position = [x, y]
+
+			this.position = [this.origin[X] + x, this.origin[Y] + y]
+
+			if (window.scrollX < 200 || window.scrollX > CENTER * 2 - 200 ||
+				window.scrollY < 200 || window.scrollY > CENTER * 2 - 200) {
+				// teleport takes button coordinates
+				const xBtn = this.origin[X] * 20 + Math.round((window.scrollX - CENTER) / 65)
+				const yBtn = this.origin[Y] * 20 + Math.round((window.scrollY - CENTER) / 65)
+				return this.teleport(xBtn, yBtn)
+			}
 			this.loadSurroundings()
 		}
 		this.getPanel = function (chunk) {
@@ -163,6 +182,19 @@
 			}
 			return this.live[chunk[X]][chunk[Y]]
 		}
+		this.teleport = function (x, y) {
+			if (x > Number.MAX_SAFE_INTEGER ||
+				x < Number.MIN_SAFE_INTEGER ||
+				y > Number.MAX_SAFE_INTEGER ||
+				y < Number.MIN_SAFE_INTEGER) {
+				return 'ok, you got me. the grid isn\'t really infinite, or at least your client can only address it up to the maximum or minimum integer values of Javascript'
+			}
+			this.origin = [Math.floor(x / 20), Math.floor(y / 20)]
+			window.scroll(CENTER + (x % 20) * 65, CENTER + (y % 20) * 65)
+			this.scroll()
+			return `ok. teleporting to ${x} ${y}`
+		}
+		window.teleport = this.teleport.bind(this)
 
 		this.loadSurroundings()
 	}
@@ -191,7 +223,10 @@
 		const panel = view.getPanel(press.chunk)
 		if (panel !== null) {
 			var button = panel.buttons[press.i];
-			press.long ? button.longpress() : button.press();
+			if (press.long) {
+				return button.longpress()
+			}
+			button.press()
 		}
 	});
 

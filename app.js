@@ -1,38 +1,3 @@
-//var express = require('express');
-//var app = express();
-//var http = require('http').Server(app);
-//var io = require('socket.io')(http);
-//var fs = require('fs');
-
-
-//[>********* persistence **************<]
-//var database = loadDb('db');
-
-//setInterval(function () {
-	//saveDb(database, 'db');
-//}, 5000);
-
-//function saveDb (db, file) {
-	//var serialized = '';
-	//for (var i = 0; i < 1600; i++) {
-		//serialized = serialized + db[i];
-	//}
-	//fs.writeFile('db', serialized, 'utf8');
-//}
-
-//function loadDb (file) {
-	//var db = {};
-	//var deserialized = fs.readFileSync(file, 'utf8').split('');
-	//for (var i = 0; i < 1600; i++) {
-		//db[i] = deserialized[i];
-	//}
-	//return db;
-//}
-//function resetDatabase() {
-	//for (var i = 0; i < 1600; i++) {
-		//database[i] = 0;
-	//}
-//}
 const fs = require('fs')
 
 const   compatible = require('diet-connect')
@@ -60,9 +25,7 @@ createStatic({
 io.on('connection', function(socket) {
 	//io.to(socket.id).emit('load', database);
 	socket.on('request', function (chunk) {
-		console.log('please load chunk ', chunk)
 		db.load(chunk, function (data) {
-			console.log('data', data)
 			if (data !== null) {
 				socket.emit('data', {
 					chunk: chunk,
@@ -77,26 +40,15 @@ io.on('connection', function(socket) {
 		//} else {
 			//database[press.id] = database[press.id] ^ 1;
 		//}
-		console.log('please press', press.chunk, press.i)
+		if (press.i > 400) {
+			console.log('unusually high index', press.i)
+		}
 		db.press(press, function (err) {
 			console.log(err)
+			socket.broadcast.emit('press', press);
 		})
-		socket.broadcast.emit('press', press);
 	});
 	socket.on('message', function (message) {
 		console.log(message);
 	});
 });
-
-
-/********** web server stuff ***********/
-//app.get('/', function(req, res) {
-	//res.sendFile(__dirname + '/index.html');
-//});
-
-//app.use(express.static('public'));
-
-//http.listen('8080', function () {
-	//console.log('listening on port 8080');
-//});
-
