@@ -1,13 +1,13 @@
 (function () {
 
-	const CENTER = 8000000
+	const CENTER = 800000
 
 	if ('scrollRestoration' in history) {
 		history.scrollRestoration = 'manual'
 	}
 
-	//document.body.style.width = 2 * CENTER + 'px'
-	//document.body.style.height = 2 * CENTER + 'px'
+	document.body.style.width = 2 * CENTER + 'px'
+	document.body.style.height = 2 * CENTER + 'px'
 
 	var socket = io();
 
@@ -258,7 +258,8 @@
 	}
 
 	document.addEventListener('mouseout', function (evt) {
-		if (evt.toElement === null && evt.relatedTarget === null) {
+		console.log(evt.relatedTarget)
+		if (evt.relatedTarget === null) {
 			scrolling = false
 		}
 	})
