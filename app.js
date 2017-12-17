@@ -3,7 +3,7 @@ const fs = require('fs')
 const   compatible = require('diet-connect')
 const       server = require('diet')
 const          app = server()
-app.listen('http://ctrl-alt-create.net')
+app.listen('http://localhost:3000')
 const           io = require('socket.io')(app.server)
 const createStatic = require('connect-static')
 
@@ -40,11 +40,7 @@ io.on('connection', function(socket) {
 		//} else {
 			//database[press.id] = database[press.id] ^ 1;
 		//}
-		if (press.i > 400) {
-			console.log('unusually high index', press.i)
-		}
 		db.press(press, function (err) {
-			console.log(err)
 			socket.broadcast.emit('press', press);
 		})
 	});

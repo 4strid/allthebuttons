@@ -6,8 +6,8 @@
 		history.scrollRestoration = 'manual'
 	}
 
-	document.body.style.width = 2 * CENTER + 'px'
-	document.body.style.height = 2 * CENTER + 'px'
+	//document.body.style.width = 2 * CENTER + 'px'
+	//document.body.style.height = 2 * CENTER + 'px'
 
 	var socket = io();
 
@@ -204,8 +204,82 @@
 
 	window.scroll(CENTER, CENTER)
 
-	window.addEventListener('scroll', function (e) {
+	//window.addEventListener('scroll', function (evt) {
+		//view.scroll()
+	//})
+
+	const RADIUS = 100
+	const PPX = 750 // pixels per second
+	let proximity
+	let scrolling = false
+	let lastTime
+	let clientX
+	let clientY
+
+	// a nice curve from 0 to 1
+	// v = (-p + 1) ** N
+	function clamped_velocity (proximity) {
+		const N = 6
+		const p = proximity / RADIUS
+		return (p * -1/2 + 1) ** N
+	}
+
+	function scrollTick (time) {
+		const elapsed = lastTime ? time - lastTime : 0
+		//console.log('lt', lastTime)
+		//console.log('t', time)
+		//console.log('e', elapsed)
+		lastTime = time
+
+		if (scrolling === false) {
+			return lastTime = 0
+		}
+
+		const centerX = window.innerWidth / 2
+		const centerY = window.innerHeight / 2
+		const heading = {
+			x: clientX - centerX,
+			y: clientY - centerY
+		}
+		const magnitude = Math.sqrt(heading.x ** 2 + heading.y ** 2)
+		const normalized_heading = {
+			x: heading.x / magnitude,
+			y: heading.y / magnitude
+		}
+		const velocity = {
+			x: normalized_heading.x * PPX * clamped_velocity(proximity),
+			y: normalized_heading.y * PPX * clamped_velocity(proximity),
+		}
+		window.scrollBy(velocity.x * elapsed / 1000, velocity.y * elapsed / 1000)
+
 		view.scroll()
+
+		window.requestAnimationFrame(scrollTick)
+	}
+
+	document.addEventListener('mouseout', function (evt) {
+		if (evt.toElement === null && evt.relatedTarget === null) {
+			scrolling = false
+		}
+	})
+
+	window.addEventListener('mousemove', function (evt) {
+		clientX = evt.clientX
+		clientY = evt.clientY
+		const px1 = evt.clientX - 0
+		const px2 = window.innerWidth - evt.clientX
+		const px3 = evt.clientY - 0
+		const px4 = window.innerHeight - evt.clientY
+		proximity = Math.min(px1, px2, px3, px4)
+		if (proximity < RADIUS) {
+			if (!scrolling) {
+				scrolling = true
+				window.requestAnimationFrame(scrollTick)
+			}
+		} else {
+			scrolling = false
+			lastTime = 0
+		}
 	})
 
 	socket.on('data', function (res) {
