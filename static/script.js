@@ -204,9 +204,9 @@
 
 	window.scroll(CENTER, CENTER)
 
-	//window.addEventListener('scroll', function (evt) {
-		//view.scroll()
-	//})
+	window.addEventListener('scroll', function (evt) {
+		view.scroll()
+	})
 
 	const RADIUS = 100
 	const PPX = 750 // pixels per second
@@ -252,7 +252,6 @@
 		}
 		window.scrollBy(velocity.x * elapsed / 1000, velocity.y * elapsed / 1000)
 
-		view.scroll()
 
 		window.requestAnimationFrame(scrollTick)
 	}
