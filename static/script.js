@@ -1,6 +1,7 @@
 (function () {
 
 	const CENTER = 800000
+	const PANEL = 1300
 
 	if ('scrollRestoration' in history) {
 		history.scrollRestoration = 'manual'
@@ -8,6 +9,10 @@
 
 	document.body.style.width = 2 * CENTER + 'px'
 	document.body.style.height = 2 * CENTER + 'px'
+
+	window.scroll(CENTER, CENTER)
+
+	const escroll = new EdgeScroll(100, 750)
 
 	var socket = io();
 
@@ -93,8 +98,12 @@
 			}
 		})
 
-		this.el.style.top = CENTER + y * 1300 + 0.5 + 'px'
-		this.el.style.left = CENTER + x * 1300 + 0.5 + 'px'
+		this.x = CENTER + x * PANEL + 0.5
+		this.y = CENTER + y * PANEL + 0.5 
+
+		this.el.style.top = this.y + 'px'
+		this.el.style.left = this.x + 'px'
+
 		document.getElementsByTagName('main')[0].appendChild(this.el);
 	}
 
@@ -104,6 +113,21 @@
 						.filter(cls => cls[0] === 'i')[0]
 						.replace('i','')
 		return this.buttons[i]
+	}
+
+	Panel.prototype.hide = function () {
+		if (this.hidden) {
+			return
+		}
+		this.hidden = true
+		this.el.style.display = 'none'
+	}
+	Panel.prototype.show = function () {
+		if (!this.hidden) {
+			return
+		}
+		this.hidden = false
+		this.el.style.display = 'block'
 	}
 
 	function View (xpos, ypos) {
@@ -158,20 +182,25 @@
 			this.removeChunks(chunks)
 		}
 		this.scroll = function () {
-			// panel coordinates
-			const x = Math.round((window.scrollX - CENTER) / 1300)
-			const y = Math.round((window.scrollY - CENTER) / 1300)
-
-			this.position = [this.origin[X] + x, this.origin[Y] + y]
-
-			if (window.scrollX < 200 || window.scrollX > CENTER * 2 - 200 ||
-				window.scrollY < 200 || window.scrollY > CENTER * 2 - 200) {
+			const scrollX = escroll.scrollX
+			const scrollY = escroll.scrollY
+			if (scrollX < 200 || scrollX > CENTER * 2 - 200 ||
+				scrollY < 200 || scrollY > CENTER * 2 - 200) {
 				// teleport takes button coordinates
-				const xBtn = this.origin[X] * 20 + Math.round((window.scrollX - CENTER) / 65)
-				const yBtn = this.origin[Y] * 20 + Math.round((window.scrollY - CENTER) / 65)
+				const xBtn = this.origin[X] * 20 + Math.round((scrollX - CENTER) / 65)
+				const yBtn = this.origin[Y] * 20 + Math.round((scrollY - CENTER) / 65)
 				return this.teleport(xBtn, yBtn)
 			}
-			this.loadSurroundings()
+			// panel coordinates
+			const x = Math.round((scrollX - CENTER) / 1300)
+			const y = Math.round((scrollY - CENTER) / 1300)
+
+			if (this.origin[X] + x !== this.position[X] || this.origin[Y] + y !== this.position[Y]) {
+				this.position = [this.origin[X] + x, this.origin[Y] + y]
+				this.loadSurroundings()
+			}
+
+			this.determineViewportIntersections()
 		}
 		this.getPanel = function (chunk) {
 			if (!this.live[chunk[X]]) {
@@ -182,6 +211,32 @@
 			}
 			return this.live[chunk[X]][chunk[Y]]
 		}
+		this.getBounds = function (x, y, w, h) {
+			return {
+				top: y,
+				right: x + w,
+				bottom: y + h,
+				left: x
+			}
+		}
+		this.determineViewportIntersections = function () {
+			const windowBounds = this.getBounds(escroll.scrollX, escroll.scrollY, escroll.innerWidth, escroll.innerHeight)
+			for (const x in this.live) {
+				for (const y in this.live[x]) {
+					const panel = this.live[x][y]
+					const panelBounds = this.getBounds(panel.x, panel.y, PANEL, PANEL)
+					if (windowBounds.top > panelBounds.bottom ||
+					    windowBounds.right < panelBounds.left ||
+						windowBounds.bottom < panelBounds.top ||
+						windowBounds.left > panelBounds.right) {
+						// invisible
+						panel.hide()
+					} else {
+						panel.show()
+					}
+				}
+			}
+		}
 		this.teleport = function (x, y) {
 			if (x > Number.MAX_SAFE_INTEGER ||
 				x < Number.MIN_SAFE_INTEGER ||
@@ -190,7 +245,7 @@
 				return 'ok, you got me. the grid isn\'t really infinite, or at least your client can only address it up to the maximum or minimum integer values of Javascript'
 			}
 			this.origin = [Math.floor(x / 20), Math.floor(y / 20)]
-			window.scroll(CENTER + (x % 20) * 65, CENTER + (y % 20) * 65)
+			escroll.scroll(CENTER + (x % 20) * 65, CENTER + (y % 20) * 65)
 			this.scroll()
 			return `ok. teleporting to ${x} ${y}`
 		}
@@ -202,84 +257,9 @@
 
 	const view = new View(0, 0)
 
-	window.scroll(CENTER, CENTER)
 
 	window.addEventListener('scroll', function (evt) {
 		view.scroll()
-	})
-
-	const RADIUS = 100
-	const PPX = 750 // pixels per second
-	let proximity
-	let scrolling = false
-	let lastTime
-	let clientX
-	let clientY
-
-	// a nice curve from 0 to 1
-	// v = (-p + 1) ** N
-	function clamped_velocity (proximity) {
-		const N = 6
-		const p = proximity / RADIUS
-		return (p * -1/2 + 1) ** N
-	}
-
-	function scrollTick (time) {
-		const elapsed = lastTime ? time - lastTime : 0
-		//console.log('lt', lastTime)
-		//console.log('t', time)
-		//console.log('e', elapsed)
-		lastTime = time
-
-		if (scrolling === false) {
-			return lastTime = 0
-		}
-
-		const centerX = window.innerWidth / 2
-		const centerY = window.innerHeight / 2
-		const heading = {
-			x: clientX - centerX,
-			y: clientY - centerY
-		}
-		const magnitude = Math.sqrt(heading.x ** 2 + heading.y ** 2)
-		const normalized_heading = {
-			x: heading.x / magnitude,
-			y: heading.y / magnitude
-		}
-		const velocity = {
-			x: normalized_heading.x * PPX * clamped_velocity(proximity),
-			y: normalized_heading.y * PPX * clamped_velocity(proximity),
-		}
-		window.scrollBy(velocity.x * elapsed / 1000, velocity.y * elapsed / 1000)
-
-
-		window.requestAnimationFrame(scrollTick)
-	}
-
-	document.addEventListener('mouseout', function (evt) {
-		console.log(evt.relatedTarget)
-		if (evt.relatedTarget === null) {
-			scrolling = false
-		}
-	})
-
-	window.addEventListener('mousemove', function (evt) {
-		clientX = evt.clientX
-		clientY = evt.clientY
-		const px1 = evt.clientX - 0
-		const px2 = window.innerWidth - evt.clientX
-		const px3 = evt.clientY - 0
-		const px4 = window.innerHeight - evt.clientY
-		proximity = Math.min(px1, px2, px3, px4)
-		if (proximity < RADIUS) {
-			if (!scrolling) {
-				scrolling = true
-				window.requestAnimationFrame(scrollTick)
-			}
-		} else {
-			scrolling = false
-			lastTime = 0
-		}
 	})
 
 	socket.on('data', function (res) {
