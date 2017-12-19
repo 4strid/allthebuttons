@@ -18,11 +18,11 @@
 
 	const colors = ['zero', 'green', 'blue', 'red']
 
-	function Button (chunk, index) {
+	function Button (parent, index) {
 		this.color = 0;
 		this.el = document.createElement('button');
 		this.el.className = 'i' + index
-		this.chunk = chunk
+		this.parent = parent
 		this.i = index
 		this.updateColor()
 	}
@@ -47,7 +47,7 @@
 			this.pressed = true;
 			this.timeout = setTimeout(() => {
 				this.longpress();
-				socket.emit('press', {chunk: this.chunk, i: this.i, long:true});
+				socket.emit('press', {chunk: this.parent.chunk, i: this.i, long:true});
 				this.pressed = false;
 			}, 400);
 		},
@@ -55,7 +55,7 @@
 			if (this.pressed) {
 				clearTimeout(this.timeout);
 				this.press();
-				socket.emit('press', {chunk: this.chunk, i: this.i});
+				socket.emit('press', {chunk: this.parent.chunk, i: this.i});
 				this.pressed = false;
 			}
 		}
@@ -67,9 +67,12 @@
 	function Panel (chunk, x, y) {
 		this.buttons = [];
 		this.el = document.createElement('div');
+
+		this.update(chunk, x, y)
+
 		socket.emit('request', chunk)
 		for (var i = 0; i < 400; i++) {
-			var button = new Button(chunk, i);
+			var button = new Button(this, i);
 			this.buttons[i] = button;
 			this.el.appendChild(button.el);
 		}
@@ -98,12 +101,6 @@
 			}
 		})
 
-		this.x = CENTER + x * PANEL + 0.5
-		this.y = CENTER + y * PANEL + 0.5 
-
-		this.el.style.top = this.y + 'px'
-		this.el.style.left = this.x + 'px'
-
 		document.getElementsByTagName('main')[0].appendChild(this.el);
 	}
 
@@ -113,6 +110,16 @@
 						.filter(cls => cls[0] === 'i')[0]
 						.replace('i','')
 		return this.buttons[i]
+	}
+
+	Panel.prototype.update = function (chunk, x, y) {
+		this.chunk = chunk
+
+		this.x = CENTER + x * PANEL + 0.5
+		this.y = CENTER + y * PANEL + 0.5 
+
+		this.el.style.left = this.x + 'px'
+		this.el.style.top = this.y + 'px'
 	}
 
 	Panel.prototype.hide = function () {
@@ -137,6 +144,7 @@
 		this.position = [xpos, ypos]
 		this.origin = [xpos, ypos]
 		this.live = {}
+		this.pool = []
 		this.surroundingChunks = function (position) {
 			var chunks = []
 			for (let x = position[X] - 1; x <= position[X] + 2; x++) {
@@ -148,10 +156,16 @@
 		}
 		// adds all chunks to self. skips chunks that are already defined
 		this.addChunks = function (chunks) {
+			console.log(this.pool.length)
 			chunks.forEach(chunk => {
 				const x = this.live[chunk[X]] = this.live[chunk[X]] || {}
 				if (x[chunk[Y]]) {
 					return
+				}
+				if (this.pool.length > 0) {
+					const panel = this.pool.pop()
+					panel.update(chunk, chunk[X] - this.origin[X], chunk[Y] - this.origin[Y])
+					return x[chunk[Y]] = panel
 				}
 				x[chunk[Y]] = new Panel(chunk, chunk[X] - this.origin[X], chunk[Y] - this.origin[Y])
 			})
@@ -161,7 +175,8 @@
 			for (const x in this.live) {
 				for (const y in this.live[x]) {
 					if (!find(x, y)) {
-						document.getElementsByTagName('main')[0].removeChild(this.live[x][y].el)
+						//document.getElementsByTagName('main')[0].removeChild(this.live[x][y].el)
+						this.pool.push(this.live[x][y])
 						delete this.live[x][y]
 					}
 				}
@@ -178,8 +193,8 @@
 		}
 		this.loadSurroundings = function () {
 			const chunks = this.surroundingChunks(this.position)
-			this.addChunks(chunks)
 			this.removeChunks(chunks)
+			this.addChunks(chunks)
 		}
 		this.scroll = function () {
 			const scrollX = escroll.scrollX

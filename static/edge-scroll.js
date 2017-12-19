@@ -22,9 +22,9 @@
 			const elapsed = this.lastTime ? time - this.lastTime : 0
 			this.lastTime = time
 			
-			if (elapsed > 20) {
-				console.log('slowed down!', elapsed)
-			}
+			//if (elapsed > 20) {
+				//console.log('slowed down!', elapsed)
+			//}
 
 			if (this.scrolling === false) {
 				return this.lastTime = 0

@@ -45,7 +45,7 @@ main {
 div {
 	position: absolute;
 	width: 1300px;
-	animation: fadein 1s;
+	/*animation: fadein 1s;*/
 	font-size: 0;
 	line-height: 0;
 }
