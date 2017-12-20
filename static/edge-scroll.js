@@ -11,21 +11,18 @@
 		this.scrollY = window.scrollY
 		this.innerWidth = window.innerWidth
 		this.innerHeight = window.innerHeight
+		this.handlers = []
 		
 		this.clampedVelocity = function () {
 			const N = 6
 			const p = this.proximity / this.radius
-			return (p * -1/2 + 1) ** N
+			return Math.pow(p * -1/2 + 1, N)
 		}
 
 		this.scrollTick = (function (time) {
 			const elapsed = this.lastTime ? time - this.lastTime : 0
 			this.lastTime = time
 			
-			//if (elapsed > 20) {
-				//console.log('slowed down!', elapsed)
-			//}
-
 			if (this.scrolling === false) {
 				return this.lastTime = 0
 			}
@@ -36,7 +33,7 @@
 			const headingX = this.clientX - centerX
 			const headingY = this.clientY - centerY
 
-			const magnitude = Math.sqrt(headingX ** 2 + headingY ** 2)
+			const magnitude = Math.sqrt(Math.pow(headingX, 2) + Math.pow(headingY, 2))
 			const normalizedX = headingX / magnitude
 			const normalizedY = headingY / magnitude
 
@@ -57,6 +54,17 @@
 			this.scrollY = window.scrollY
 			this.innerWidth = window.innerWidth
 			this.innerHeight = window.innerHeight
+		}
+
+		this.onScroll = function (handler) {
+			this.handlers.push(handler)
+		}
+
+		this.offScroll = function (handler) {
+			const i = this.handlers.indexOf(handler)
+			if (i > -1) {
+				this.handlers.splice(i, 1)
+			}
 		}
 
 		const scroll = this
@@ -83,6 +91,22 @@
 			} else {
 				scroll.scrolling = false
 			}
+		})
+
+		document.addEventListener('scroll', function (evt) {
+			let src
+			if (scroll.scrolling) {
+				src = scroll
+			} else {
+				src = window
+			}
+			const scrollX = src.scrollX
+			const scrollY = src.scrollY
+			const innerWidth = src.innerWidth
+			const innerHeight = src.innerHeight
+			scroll.handlers.forEach(function (handler) {
+				handler(scrollX, scrollY, innerWidth, innerHeight)
+			})
 		})
 	}
 	window.EdgeScroll = EdgeScroll

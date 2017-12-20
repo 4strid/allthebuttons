@@ -1,3 +1,10 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 @viewport {
 	max-zoom: 0.8;
 }
@@ -9,18 +16,19 @@ button:focus, button:hover, button:active {
    outline: 0 !important;
 }
 
-html {
-  box-sizing: border-box;
+button:active {
+	/*position: relative;*/
+	/*top: 0.5px;*/
+	border-width: 2px 2px 2px 2px;
 }
-*, *:before, *:after {
-  box-sizing: inherit;
-}
+
 
 body {
 	/*width: 2700px;*/
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
+	/*background-color: #222*/
 }
 
 button {
@@ -33,9 +41,11 @@ button {
   width: 64px; 
   /*change border colour*/
 	border-style: solid;
-	border-color: #444 #333 #333 #333;
+	/*border-color: #444 #333 #333 #333;*/
+	border-color: #555 #555 #999 #777;
 	border-width: 1px 2px 3px 2px;
 	-webkit-user-select: none;
+	vertical-align: top;
 }
 
 main {
@@ -57,40 +67,43 @@ div {
 
 button.zero {
 	background-color: #eee;
-}
-
-button.green {
-	background-color: #5f5;
-}
-
-button.blue {
-	background-color: #55f;
-}
-
-button.red {
-	background-color: #f55;
+	/*background: -moz-radial-gradient(center, ellipse cover, #ddd 0%, #eee 100%);*/
+	/*background: -webkit-radial-gradient(center, ellipse cover, #ddd 0%,#eee 100%);*/
+	/*background: radial-gradient(ellipse at center, #dedede 0%,#eee 100%);*/
 }
 
 /*button.green {*/
-	/*background: #cfc;*/
-	/*background: -moz-radial-gradient(center, ellipse cover, #8f8 0%, #5f5 100%);*/
-	/*background: -webkit-radial-gradient(center, ellipse cover, #8f8 0%,#5f5 100%);*/
-	/*background: radial-gradient(ellipse at center, #8f8 0%,#5f5 44%);*/
-	/*[>border-color: #484 #282 #282 #282;<]*/
+	/*background-color: #5f5;*/
 /*}*/
 
 /*button.blue {*/
-	/*background: #55f;*/
-	/*background: -moz-radial-gradient(center, ellipse cover, #88f 0%, #55f 100%);*/
-	/*background: -webkit-radial-gradient(center, ellipse cover, #88f 0%,#55f 100%);*/
-	/*background: radial-gradient(ellipse at center, #88f 0%,#55f 100%);*/
-	/*[>border-color: #448 #228 #228 #228;<]*/
+	/*background-color: #55f;*/
 /*}*/
 
 /*button.red {*/
-	/*background: #f55;*/
-	/*background: -moz-radial-gradient(center, ellipse cover, #f88 0%, #f55 100%);*/
-	/*background: -webkit-radial-gradient(center, ellipse cover, #f88 0%,#f55 100%);*/
-	/*background: radial-gradient(ellipse at center, #f88 0%,#f55 100%);*/
-	/*[>border-color: #844 #822 #822 #822;<]*/
+	/*background-color: #f55;*/
 /*}*/
+
+button.green {
+	background: #5f5;
+	background: -moz-radial-gradient(center, ellipse cover, #8f8 0%, #5f5 100%);
+	background: -webkit-radial-gradient(center, ellipse cover, #8f8 0%,#5f5 100%);
+	background: radial-gradient(ellipse at center, #8f8 0%,#5f5 100%);
+	border-color: #484 #282 #282 #282;
+}
+
+button.blue {
+	background: #55f;
+	background: -moz-radial-gradient(center, ellipse cover, #88f 0%, #55f 100%);
+	background: -webkit-radial-gradient(center, ellipse cover, #88f 0%,#55f 100%);
+	background: radial-gradient(ellipse at center, #88f 0%,#55f 100%);
+	border-color: #448 #228 #228 #228;
+}
+
+button.red {
+	background: #f55;
+	background: -moz-radial-gradient(center, ellipse cover, #f88 0%, #f55 100%);
+	background: -webkit-radial-gradient(center, ellipse cover, #f88 0%,#f55 100%);
+	background: radial-gradient(ellipse at center, #f88 0%,#f55 100%);
+	border-color: #844 #822 #822 #822;
+}

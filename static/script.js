@@ -156,7 +156,6 @@
 		}
 		// adds all chunks to self. skips chunks that are already defined
 		this.addChunks = function (chunks) {
-			console.log(this.pool.length)
 			chunks.forEach(chunk => {
 				const x = this.live[chunk[X]] = this.live[chunk[X]] || {}
 				if (x[chunk[Y]]) {
@@ -165,6 +164,7 @@
 				if (this.pool.length > 0) {
 					const panel = this.pool.pop()
 					panel.update(chunk, chunk[X] - this.origin[X], chunk[Y] - this.origin[Y])
+					socket.emit('request', chunk)
 					return x[chunk[Y]] = panel
 				}
 				x[chunk[Y]] = new Panel(chunk, chunk[X] - this.origin[X], chunk[Y] - this.origin[Y])
@@ -185,10 +185,7 @@
 				}
 			}
 			function find (x, y) {
-				return savedChunks.filter(chunk => {
-					const result = x == chunk[X] && y == chunk[Y] 
-					return result
-				}).length
+				return savedChunks.filter(chunk => x == chunk[X] && y == chunk[Y] ).length
 			}
 		}
 		this.loadSurroundings = function () {
@@ -196,9 +193,7 @@
 			this.removeChunks(chunks)
 			this.addChunks(chunks)
 		}
-		this.scroll = function () {
-			const scrollX = escroll.scrollX
-			const scrollY = escroll.scrollY
+		this.scroll = function (scrollX, scrollY, innerWidth, innerHeight) {
 			if (scrollX < 200 || scrollX > CENTER * 2 - 200 ||
 				scrollY < 200 || scrollY > CENTER * 2 - 200) {
 				// teleport takes button coordinates
@@ -215,7 +210,7 @@
 				this.loadSurroundings()
 			}
 
-			this.determineViewportIntersections()
+			this.determineViewportIntersections(scrollX, scrollY, innerWidth, innerHeight)
 		}
 		this.getPanel = function (chunk) {
 			if (!this.live[chunk[X]]) {
@@ -234,8 +229,8 @@
 				left: x
 			}
 		}
-		this.determineViewportIntersections = function () {
-			const windowBounds = this.getBounds(escroll.scrollX, escroll.scrollY, escroll.innerWidth, escroll.innerHeight)
+		this.determineViewportIntersections = function (scrollX, scrollY, innerWidth, innerHeight) {
+			const windowBounds = this.getBounds(scrollX, scrollY, innerWidth, innerHeight)
 			for (const x in this.live) {
 				for (const y in this.live[x]) {
 					const panel = this.live[x][y]
@@ -273,8 +268,8 @@
 	const view = new View(0, 0)
 
 
-	window.addEventListener('scroll', function (evt) {
-		view.scroll()
+	escroll.onScroll(function (scrollX, scrollY, innerWidth, innerHeight) {
+		view.scroll(scrollX, scrollY, innerWidth, innerHeight)
 	})
 
 	socket.on('data', function (res) {
