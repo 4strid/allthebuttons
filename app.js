@@ -46,12 +46,10 @@ io.on('connection', function(sock) {
 			return console.log('load overload!')
 		}
 		db.load(chunk, function (data) {
-			if (data !== null) {
-				socket.socket.emit('data', {
-					chunk: chunk,
-					data: data
-				})
-			}
+			socket.socket.emit('data', {
+				chunk: chunk,
+				data: data
+			})
 		})
 		socket.loadOpsIn1s++
 	})

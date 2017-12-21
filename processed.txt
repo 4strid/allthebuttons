@@ -1,0 +1,1158 @@
+Code move event for unknown code: 0x12232e09980
+Code move event for unknown code: 0x12232e96fe0
+Code move event for unknown code: 0x12232ed8660
+Statistical profiling result from isolate-000001ED14B2F820-v8.log, (338323 ticks, 16234 unaccounted, 0 excluded).
+
+ [Shared libraries]:
+   ticks  total  nonlib   name
+  159839   47.2%          C:\WINDOWS\SYSTEM32\ntdll.dll
+  71247   21.1%          C:\Program Files\nodejs\node.exe
+   1148    0.3%          C:\WINDOWS\System32\WS2_32.dll
+    332    0.1%          C:\WINDOWS\System32\KERNEL32.DLL
+    225    0.1%          C:\WINDOWS\system32\mswsock.dll
+     53    0.0%          C:\WINDOWS\System32\KERNELBASE.dll
+
+ [JavaScript]:
+   ticks  total  nonlib   name
+  15914    4.7%   15.1%  LazyCompile: *encode C:\Users\pfesz\Desktop\100mil\lib\encoding.js:30:19
+   4583    1.4%    4.3%  LazyCompile: *emit events.js:136:44
+   4513    1.3%    4.3%  Builtin: CallFunction_ReceiverIsNullOrUndefined
+   3942    1.2%    3.7%  Stub: LoadICTrampolineStub
+   2767    0.8%    2.6%  Builtin: Call_ReceiverIsNullOrUndefined
+   2699    0.8%    2.6%  LazyCompile: *unpack C:\Users\pfesz\Desktop\100mil\lib\encoding.js:73:17
+   2666    0.8%    2.5%  Stub: CEntryStub
+   2647    0.8%    2.5%  LazyCompile: ~unpack C:\Users\pfesz\Desktop\100mil\lib\encoding.js:33:24
+   2314    0.7%    2.2%  Stub: LoadICStub
+   2127    0.6%    2.0%  LazyCompile: *send C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\WebSocket.js:211:41
+   1662    0.5%    1.6%  Builtin: CallFunction_ReceiverIsNotNullOrUndefined
+   1432    0.4%    1.4%  LazyCompile: *Sender.send C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\Sender.js:100:33
+   1387    0.4%    1.3%  LazyCompile: *Socket.flush C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\socket.js:409:35
+   1292    0.4%    1.2%  LazyCompile: *unpack C:\Users\pfesz\Desktop\100mil\lib\encoding.js:33:24
+   1272    0.4%    1.2%  LazyCompile: *Socket.sendPacket C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\socket.js:373:40
+   1198    0.4%    1.1%  LazyCompile: *exports.encodePacket C:\Users\pfesz\Desktop\100mil\node_modules\engine.io-parser\lib\index.js:52:33
+   1134    0.3%    1.1%  LazyCompile: ~<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\socket.io-adapter\index.js:121:39
+   1090    0.3%    1.0%  LazyCompile: *Socket._writeGeneric net.js:661:42
+   1076    0.3%    1.0%  LazyCompile: Sender.frameAndSend C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\Sender.js:144:41
+   1052    0.3%    1.0%  LazyCompile: *Buffer buffer.js:70:16
+   1012    0.3%    1.0%  Stub: StrictEqualStub
+    949    0.3%    0.9%  LazyCompile: *fromString buffer.js:186:20
+    942    0.3%    0.9%  LazyCompile: *Socket.packet C:\Users\pfesz\Desktop\100mil\node_modules\socket.io\lib\socket.js:219:35
+    789    0.2%    0.7%  LazyCompile: *Client.packet C:\Users\pfesz\Desktop\100mil\node_modules\socket.io\lib\client.js:141:35
+    728    0.2%    0.7%  LazyCompile: *nextTick internal/process/next_tick.js:140:20
+    700    0.2%    0.7%  Stub: StringAddStub_CheckNone_NotTenured
+    694    0.2%    0.7%  Builtin: ArgumentsAdaptorTrampoline
+    685    0.2%    0.6%  Stub: FastArrayPushStub
+    659    0.2%    0.6%  LazyCompile: *wtf8encode C:\Users\pfesz\Desktop\100mil\node_modules\wtf-8\wtf-8.js:94:21
+    616    0.2%    0.6%  Stub: ToBooleanICStub(SpecObject)
+    608    0.2%    0.6%  Builtin: CallFunction_ReceiverIsAny
+    562    0.2%    0.5%  LazyCompile: *onDrain C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\socket.js:330:20
+    538    0.2%    0.5%  Stub: CompareICStub {4}
+    493    0.1%    0.5%  LazyCompile: *ucs2decode C:\Users\pfesz\Desktop\100mil\node_modules\wtf-8\wtf-8.js:23:21
+    481    0.1%    0.5%  LazyCompile: *WebSocket.send C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\transports\websocket.js:89:37
+    412    0.1%    0.4%  Stub: CompareICStub {2}
+    405    0.1%    0.4%  LazyCompile: *Writable.write _stream_writable.js:221:36
+    404    0.1%    0.4%  LazyCompile: *Uint8ArrayConstructByArrayBuffer native typedarray.js:144:42
+    398    0.1%    0.4%  LazyCompile: *encodeCodePoint C:\Users\pfesz\Desktop\100mil\node_modules\wtf-8\wtf-8.js:73:26
+    397    0.1%    0.4%  Handler: length {1}
+    393    0.1%    0.4%  LazyCompile: *afterWrite _stream_writable.js:381:20
+    392    0.1%    0.4%  LazyCompile: *Socket.write net.js:652:34
+    385    0.1%    0.4%  Stub: CompareICStub {3}
+    357    0.1%    0.3%  Stub: FastNewClosureStub
+    351    0.1%    0.3%  LazyCompile: *WritableState.onwrite _stream_writable.js:89:26
+    349    0.1%    0.3%  LazyCompile: *byteLength buffer.js:343:20
+    345    0.1%    0.3%  Stub: LoadConstantStub {2}
+    342    0.1%    0.3%  Builtin: Construct
+    341    0.1%    0.3%  Stub: InstanceOfStub
+    315    0.1%    0.3%  LazyCompile: *Buffer.write buffer.js:714:34
+    292    0.1%    0.3%  Stub: LoadConstantStub {5}
+    284    0.1%    0.3%  LazyCompile: *writeOrBuffer _stream_writable.js:292:23
+    283    0.1%    0.3%  Stub: VectorKeyedStoreICTrampolineStub
+    269    0.1%    0.3%  Stub: StoreTransitionStub {1}
+    252    0.1%    0.2%  LazyCompile: *get domain.js:22:16
+    250    0.1%    0.2%  Stub: VectorStoreICTrampolineStub
+    238    0.1%    0.2%  Builtin: JSConstructStubGeneric
+    226    0.1%    0.2%  LazyCompile: *InnerArrayIndexOf native array.js:1009:27
+    224    0.1%    0.2%  LazyCompile: ~writeToEngine C:\Users\pfesz\Desktop\100mil\node_modules\socket.io\lib\client.js:146:25
+    223    0.1%    0.2%  Handler: Buffer
+    217    0.1%    0.2%  LazyCompile: *send C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\transports\websocket.js:97:17
+    213    0.1%    0.2%  Builtin: Call_ReceiverIsAny
+    211    0.1%    0.2%  Stub: ArraySingleArgumentConstructorStub_FAST_HOLEY_ELEMENTS
+    206    0.1%    0.2%  Stub: VectorStoreICStub
+    206    0.1%    0.2%  Builtin: Call_ReceiverIsNotNullOrUndefined
+    203    0.1%    0.2%  LazyCompile: *onEnd C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\transports\websocket.js:117:18
+    202    0.1%    0.2%  Stub: FastCloneShallowObjectStub
+    200    0.1%    0.2%  Stub: CallApiCallbackStub
+    199    0.1%    0.2%  Stub: CallApiCallbackStub {2}
+    197    0.1%    0.2%  Stub: CallConstructStub
+    195    0.1%    0.2%  LazyCompile: *onwrite _stream_writable.js:353:17
+    178    0.1%    0.2%  Stub: CallApiCallbackStub {1}
+    175    0.1%    0.2%  LazyCompile: *Uint8Array native typedarray.js:241:31
+    174    0.1%    0.2%  Stub: LoadConstantStub {4}
+    173    0.1%    0.2%  Stub: ToBooleanICStub(Bool)
+    162    0.0%    0.2%  Stub: LoadConstantStub {6}
+    159    0.0%    0.2%  Builtin: MathTrunc
+    158    0.0%    0.1%  LazyCompile: *isFinite native v8natives.js:32:24
+    157    0.0%    0.1%  LazyCompile: ~<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\Sender.js:117:37
+    157    0.0%    0.1%  LazyCompile: *_unrefTimer net.js:201:52
+    155    0.0%    0.1%  Stub: JSEntryStub
+    150    0.0%    0.1%  Stub: FastNewObjectStub
+    149    0.0%    0.1%  Stub: LoadFieldStub {7}
+    149    0.0%    0.1%  Stub: KeyedLoadICTrampolineStub
+    143    0.0%    0.1%  Stub: FastNewContextStub {1}
+    140    0.0%    0.1%  Handler: handle
+    137    0.0%    0.1%  Stub: RecordWriteStub {3}
+    137    0.0%    0.1%  Stub: LoadFieldStub {6}
+    137    0.0%    0.1%  Handler: hasOwnProperty {NaN}
+    132    0.0%    0.1%  Stub: LoadConstantStub {7}
+    132    0.0%    0.1%  Stub: GrowArrayElementsStub
+    128    0.0%    0.1%  Stub: LoadConstantStub {11}
+    124    0.0%    0.1%  Stub: StoreFastElementStub {1}
+    124    0.0%    0.1%  Stub: GrowArrayElementsStub {1}
+    123    0.0%    0.1%  Handler: write
+    119    0.0%    0.1%  Stub: LoadFieldStub {2}
+    119    0.0%    0.1%  Stub: BinaryOpICStub(ADD:Smi*Smi->Smi)
+    119    0.0%    0.1%  Handler: oncomplete
+    118    0.0%    0.1%  Stub: FastNewContextStub {2}
+    106    0.0%    0.1%  Stub: CallICStub(args(2), ANY, 
+    104    0.0%    0.1%  Stub: ToNumberStub
+    104    0.0%    0.1%  Stub: RecordWriteStub {12}
+    102    0.0%    0.1%  Handler: on
+    101    0.0%    0.1%  Stub: CEntryStub {1}
+     98    0.0%    0.1%  LazyCompile: *createWriteReq net.js:733:24
+     91    0.0%    0.1%  LazyCompile: *indexOf native array.js:1054:22
+     88    0.0%    0.1%  Stub: LoadConstantStub {1}
+     88    0.0%    0.1%  Handler: indexOf
+     87    0.0%    0.1%  Stub: RecordWriteStub {6}
+     87    0.0%    0.1%  LazyCompile: *Socket.send.Socket.write C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\socket.js:359:35
+     86    0.0%    0.1%  Stub: RecordWriteStub {9}
+     83    0.0%    0.1%  Stub: CallICStub(args(2), NOT_NULL_OR_UNDEFINED, 
+     81    0.0%    0.1%  Stub: NonNumberToNumberStub
+     79    0.0%    0.1%  Stub: FastNewContextStub {3}
+     79    0.0%    0.1%  Stub: BinaryOpICStub(BIT_OR:Smi*Smi->Smi)
+     77    0.0%    0.1%  Stub: StringToNumberStub
+     75    0.0%    0.1%  Stub: RecordWriteStub {20}
+     74    0.0%    0.1%  Stub: ToBooleanICStub(Undefined,Bool)
+     71    0.0%    0.1%  Stub: StringEqualStub
+     69    0.0%    0.1%  Handler: copy
+     69    0.0%    0.1%  Builtin: JSBuiltinsConstructStubForDerived
+     68    0.0%    0.1%  Stub: VectorStoreICStub {1}
+     68    0.0%    0.1%  Stub: RecordWriteStub {7}
+     66    0.0%    0.1%  Stub: LoadConstantStub {10}
+     65    0.0%    0.1%  Stub: LoadFieldStub {5}
+     64    0.0%    0.1%  Handler: frameAndSend
+     63    0.0%    0.1%  Stub: LoadFieldStub {4}
+     63    0.0%    0.1%  LazyCompile: *DoJoin native array.js:129:16
+     63    0.0%    0.1%  Handler: read
+     59    0.0%    0.1%  Stub: StoreFieldStub {6}
+     59    0.0%    0.1%  Stub: LoadFieldStub {10}
+     59    0.0%    0.1%  LazyCompile: *Socket._write net.js:729:35
+     56    0.0%    0.1%  Stub: LoadFieldStub {11}
+     54    0.0%    0.1%  Stub: CallICStub(args(1), NOT_NULL_OR_UNDEFINED, 
+     53    0.0%    0.1%  LazyCompile: *ToPositiveInteger native runtime.js:27:27
+     53    0.0%    0.1%  Handler: _eventsCount
+     51    0.0%    0.0%  Stub: StringAddStub_ConvertRight_NotTenured
+     51    0.0%    0.0%  Builtin: Apply
+     50    0.0%    0.0%  LazyCompile: *File.writeFile C:\Users\pfesz\Desktop\100mil\lib\file.js:140:37
+     48    0.0%    0.0%  Handler: end
+     47    0.0%    0.0%  Stub: CompareICStub {7}
+     45    0.0%    0.0%  Stub: RecordWriteStub {5}
+     45    0.0%    0.0%  Stub: CallICTrampolineStub {6}
+     44    0.0%    0.0%  Stub: RecordWriteStub {4}
+     44    0.0%    0.0%  Handler: Buffer {2}
+     44    0.0%    0.0%  Builtin: ObjectHasOwnProperty
+     44    0.0%    0.0%  Builtin: NotifyStubFailureSaveDoubles
+     43    0.0%    0.0%  LazyCompile: *FastBuffer buffer.js:10:14
+     43    0.0%    0.0%  Builtin: ConstructFunction
+     42    0.0%    0.0%  Stub: RecordWriteStub {17}
+     42    0.0%    0.0%  LazyCompile: *UseSparseVariant native array.js:95:26
+     41    0.0%    0.0%  Stub: RecordWriteStub {19}
+     41    0.0%    0.0%  Stub: RecordWriteStub {11}
+     41    0.0%    0.0%  LazyCompile: ~File.writeFile C:\Users\pfesz\Desktop\100mil\lib\file.js:140:37
+     40    0.0%    0.0%  Stub: BinaryOpWithAllocationSiteStub(ADD_CreateAllocationMementos:String*String->String)
+     40    0.0%    0.0%  Handler: data
+     38    0.0%    0.0%  LazyCompile: *delete native collection.js:300:19
+     37    0.0%    0.0%  Stub: RecordWriteStub {21}
+     36    0.0%    0.0%  Handler: __defineGetter__ {NaN}
+     35    0.0%    0.0%  Builtin: FunctionPrototypeApply
+     34    0.0%    0.0%  Stub: ToBooleanICStub(String)
+     34    0.0%    0.0%  Stub: RecordWriteStub {2}
+     32    0.0%    0.0%  Stub: BinaryOpWithAllocationSiteStub(ADD_CreateAllocationMementos:Smi*String->String)
+     31    0.0%    0.0%  Stub: ToBooleanICStub(Smi)
+     31    0.0%    0.0%  Stub: CompareICStub {6}
+     31    0.0%    0.0%  Handler: write {1}
+     31    0.0%    0.0%  Handler: flags {1}
+     31    0.0%    0.0%  Builtin: JSEntryTrampoline
+     30    0.0%    0.0%  Handler: extensions
+     30    0.0%    0.0%  Builtin: StringFromCharCode
+     30    0.0%    0.0%  Builtin: FunctionHasInstance
+     29    0.0%    0.0%  Stub: StubFailureTrampolineStub
+     29    0.0%    0.0%  LazyCompile: ~encodeOne C:\Users\pfesz\Desktop\100mil\node_modules\engine.io-parser\lib\index.js:228:21
+     29    0.0%    0.0%  LazyCompile: *Socket.setPingTimeout C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\socket.js:129:44
+     28    0.0%    0.0%  Stub: StoreFieldStub {16}
+     28    0.0%    0.0%  Stub: RecordWriteStub {8}
+     27    0.0%    0.0%  Handler: compress {2}
+     26    0.0%    0.0%  Stub: RecordWriteStub {24}
+     26    0.0%    0.0%  Stub: LoadConstantStub
+     26    0.0%    0.0%  Stub: CompareICStub {10}
+     25    0.0%    0.0%  LazyCompile: *get length native typedarray.js:1518:29
+     25    0.0%    0.0%  Builtin: StringConstructor
+     24    0.0%    0.0%  Stub: LoadFieldStub {9}
+     24    0.0%    0.0%  LazyCompile: *<anonymous> C:\Users\pfesz\Desktop\100mil\app.js:58:37
+     23    0.0%    0.0%  Stub: ToBooleanICStub(Undefined)
+     23    0.0%    0.0%  LazyCompile: ~proxy C:\Users\pfesz\Desktop\100mil\node_modules\after\index.js:10:19
+     23    0.0%    0.0%  Builtin: FunctionPrototypeCall
+     22    0.0%    0.0%  Stub: StoreTransitionStub {5}
+     22    0.0%    0.0%  Stub: CallICTrampolineStub {3}
+     22    0.0%    0.0%  LazyCompile: ~encode C:\Users\pfesz\Desktop\100mil\lib\encoding.js:30:19
+     22    0.0%    0.0%  Handler: headers {1}
+     21    0.0%    0.0%  Stub: RecordWriteStub {29}
+     21    0.0%    0.0%  Stub: CallICStub(args(1), ANY, 
+     21    0.0%    0.0%  LazyCompile: *File.load C:\Users\pfesz\Desktop\100mil\lib\file.js:79:32
+     20    0.0%    0.0%  Stub: LoadConstantStub {17}
+     20    0.0%    0.0%  LazyCompile: *isBuffer buffer.js:268:36
+     20    0.0%    0.0%  Builtin: CallBoundFunction
+     19    0.0%    0.0%  LazyCompile: ~send C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\transports\websocket.js:97:17
+     19    0.0%    0.0%  LazyCompile: ~_hasBinary C:\Users\pfesz\Desktop\100mil\node_modules\has-binary\index.js:25:22
+     19    0.0%    0.0%  LazyCompile: *set native collection.js:252:16
+     18    0.0%    0.0%  Stub: LoadConstantStub {16}
+     18    0.0%    0.0%  LazyCompile: ~clone C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\Receiver.js:434:15
+     18    0.0%    0.0%  Handler: onevent {1}
+     18    0.0%    0.0%  Handler: disconnect {1}
+     17    0.0%    0.0%  Stub: RecordWriteStub {31}
+     17    0.0%    0.0%  Stub: RecordWriteStub {28}
+     17    0.0%    0.0%  Handler: packet {45}
+     16    0.0%    0.0%  Stub: ToLengthStub
+     16    0.0%    0.0%  Stub: RecordWriteStub {27}
+     16    0.0%    0.0%  Handler: packet {18}
+     16    0.0%    0.0%  Handler: packet {101}
+     16    0.0%    0.0%  Handler: emit {5}
+     16    0.0%    0.0%  Builtin: JSConstructStubApi
+     15    0.0%    0.0%  Stub: LoadFieldStub {19}
+     15    0.0%    0.0%  Stub: FastNewContextStub {5}
+     15    0.0%    0.0%  LazyCompile: *BufferPool.reset C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\BufferPool.js:52:38
+     15    0.0%    0.0%  Handler: packet {62}
+     15    0.0%    0.0%  Handler: packet {20}
+     14    0.0%    0.0%  Stub: RecordWriteStub {25}
+     14    0.0%    0.0%  LazyCompile: *db.getFile C:\Users\pfesz\Desktop\100mil\lib\db.js:29:23
+     14    0.0%    0.0%  LazyCompile: *_addListener events.js:210:22
+     14    0.0%    0.0%  LazyCompile: *BufferPool.get C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\BufferPool.js:40:36
+     14    0.0%    0.0%  Handler: packet {80}
+     14    0.0%    0.0%  Handler: packet {64}
+     14    0.0%    0.0%  Handler: packet {61}
+     14    0.0%    0.0%  Handler: packet {13}
+     14    0.0%    0.0%  Handler: packet {105}
+     13    0.0%    0.0%  Stub: StoreTransitionStub {2}
+     13    0.0%    0.0%  Stub: RecordWriteStub {15}
+     13    0.0%    0.0%  Stub: LoadFieldStub {1}
+     13    0.0%    0.0%  LazyCompile: ~<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\engine.io-parser\lib\index.js:229:64
+     13    0.0%    0.0%  LazyCompile: *readableAddChunk _stream_readable.js:147:26
+     13    0.0%    0.0%  LazyCompile: *Uint8ArrayConstructByLength native typedarray.js:184:37
+     13    0.0%    0.0%  LazyCompile: *File.press C:\Users\pfesz\Desktop\100mil\lib\file.js:99:33
+     13    0.0%    0.0%  LazyCompile: *Buffer.concat buffer.js:293:25
+     13    0.0%    0.0%  Handler: send
+     13    0.0%    0.0%  Handler: request {1}
+     13    0.0%    0.0%  Handler: packet {93}
+     13    0.0%    0.0%  Handler: packet {36}
+     13    0.0%    0.0%  Handler: merge
+     12    0.0%    0.0%  Stub: VectorKeyedStoreICTrampolineStub {1}
+     12    0.0%    0.0%  Stub: LoadConstantStub {8}
+     12    0.0%    0.0%  LazyCompile: *fastCopy C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\Receiver.js:412:18
+     12    0.0%    0.0%  LazyCompile: *Receiver.endPacket C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\Receiver.js:254:40
+     12    0.0%    0.0%  LazyCompile: *Receiver.add C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\Receiver.js:85:34
+     12    0.0%    0.0%  LazyCompile: *Adapter.broadcast C:\Users\pfesz\Desktop\100mil\node_modules\socket.io-adapter\index.js:107:39
+     12    0.0%    0.0%  Handler: packet {94}
+     12    0.0%    0.0%  Handler: packet {88}
+     12    0.0%    0.0%  Handler: packet {66}
+     12    0.0%    0.0%  Handler: packet {42}
+     12    0.0%    0.0%  Handler: packet {102}
+     11    0.0%    0.0%  Stub: ToBooleanICStub(SpecObject,String)
+     11    0.0%    0.0%  Stub: RecordWriteStub {18}
+     11    0.0%    0.0%  Stub: RecordWriteStub {14}
+     11    0.0%    0.0%  Stub: KeyedLoadICStub
+     11    0.0%    0.0%  Stub: CallICStub(args(6), NOT_NULL_OR_UNDEFINED, 
+     11    0.0%    0.0%  LazyCompile: ~eachWithIndex C:\Users\pfesz\Desktop\100mil\node_modules\engine.io-parser\lib\index.js:247:31
+     11    0.0%    0.0%  LazyCompile: *Emitter.emit C:\Users\pfesz\Desktop\100mil\node_modules\component-emitter\index.js:126:34
+     11    0.0%    0.0%  Handler: packet {9}
+     11    0.0%    0.0%  Handler: packet {91}
+     11    0.0%    0.0%  Handler: packet {60}
+     11    0.0%    0.0%  Handler: packet {53}
+     11    0.0%    0.0%  Handler: packet {44}
+     11    0.0%    0.0%  Handler: packet {25}
+     11    0.0%    0.0%  Handler: packet {10}
+     11    0.0%    0.0%  Handler: packet {107}
+     11    0.0%    0.0%  Handler: isDefinedAndNonNull
+     11    0.0%    0.0%  Handler: domain {2}
+     11    0.0%    0.0%  Handler: _eventsCount {1}
+     11    0.0%    0.0%  Handler: _events
+     11    0.0%    0.0%  Builtin: InterruptCheck
+     10    0.0%    0.0%  Stub: RecordWriteStub {35}
+     10    0.0%    0.0%  Stub: FastCloneShallowArrayStub
+     10    0.0%    0.0%  LazyCompile: ~setLengthHeader C:\Users\pfesz\Desktop\100mil\node_modules\engine.io-parser\lib\index.js:224:27
+     10    0.0%    0.0%  LazyCompile: *finish C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\Receiver.js:503:21
+     10    0.0%    0.0%  LazyCompile: *Readable.read _stream_readable.js:271:35
+     10    0.0%    0.0%  LazyCompile: *ArraySlice native array.js:570:20
+     10    0.0%    0.0%  Handler: reset
+     10    0.0%    0.0%  Handler: packet {96}
+     10    0.0%    0.0%  Handler: packet {95}
+     10    0.0%    0.0%  Handler: packet {67}
+     10    0.0%    0.0%  Handler: packet {52}
+     10    0.0%    0.0%  Handler: packet {49}
+     10    0.0%    0.0%  Handler: packet {43}
+     10    0.0%    0.0%  Handler: packet {19}
+     10    0.0%    0.0%  Handler: packet {11}
+     10    0.0%    0.0%  Handler: packet {110}
+     10    0.0%    0.0%  Handler: packet {108}
+      9    0.0%    0.0%  Stub: ToBooleanStub
+      9    0.0%    0.0%  Stub: StoreFastElementStub {2}
+      9    0.0%    0.0%  Stub: RegExpExecStub
+      9    0.0%    0.0%  Stub: RecordWriteStub {38}
+      9    0.0%    0.0%  Stub: RecordWriteStub {30}
+      9    0.0%    0.0%  Stub: LoadFieldStub {14}
+      9    0.0%    0.0%  Stub: LoadConstantStub {14}
+      9    0.0%    0.0%  Stub: FastNewStrictArgumentsStub
+      9    0.0%    0.0%  Stub: CompareICStub {5}
+      9    0.0%    0.0%  Stub: CallICTrampolineStub {1}
+      9    0.0%    0.0%  LazyCompile: ~getFile.file C:\Users\pfesz\Desktop\100mil\lib\db.js:23:28
+      9    0.0%    0.0%  LazyCompile: *getData C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\Receiver.js:487:22
+      9    0.0%    0.0%  LazyCompile: *Socket.emit C:\Users\pfesz\Desktop\100mil\node_modules\socket.io\lib\socket.js:139:33
+      9    0.0%    0.0%  LazyCompile: *Receiver.processPacket C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\Receiver.js:195:45
+      9    0.0%    0.0%  Handler: packet {99}
+      9    0.0%    0.0%  Handler: packet {77}
+      9    0.0%    0.0%  Handler: packet {6}
+      9    0.0%    0.0%  Handler: packet {69}
+      9    0.0%    0.0%  Handler: packet {68}
+      9    0.0%    0.0%  Handler: packet {15}
+      9    0.0%    0.0%  Handler: packet {12}
+      9    0.0%    0.0%  Handler: packet {100}
+      8    0.0%    0.0%  Stub: TypeofStub
+      8    0.0%    0.0%  Stub: NumberToStringStub
+      8    0.0%    0.0%  Stub: LoadConstantStub {12}
+      8    0.0%    0.0%  Stub: CallICStub(args(3), NOT_NULL_OR_UNDEFINED, 
+      8    0.0%    0.0%  LazyCompile: ~<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\Receiver.js:508:84
+      8    0.0%    0.0%  LazyCompile: ~<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\engine.io-parser\lib\index.js:248:22
+      8    0.0%    0.0%  LazyCompile: *exports.decodePacket C:\Users\pfesz\Desktop\100mil\node_modules\engine.io-parser\lib\index.js:120:33
+      8    0.0%    0.0%  LazyCompile: *disabled C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\node_modules\debug\debug.js:65:20
+      8    0.0%    0.0%  LazyCompile: *Url.parse url.js:79:31
+      8    0.0%    0.0%  Handler: packet {97}
+      8    0.0%    0.0%  Handler: packet {84}
+      8    0.0%    0.0%  Handler: packet {81}
+      8    0.0%    0.0%  Handler: packet {7}
+      8    0.0%    0.0%  Handler: packet {76}
+      8    0.0%    0.0%  Handler: packet {72}
+      8    0.0%    0.0%  Handler: packet {70}
+      8    0.0%    0.0%  Handler: packet {65}
+      8    0.0%    0.0%  Builtin: HandleApiCall
+      7    0.0%    0.0%  Stub: FastNewContextStub {4}
+      7    0.0%    0.0%  LazyCompile: ~<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\Receiver.js:492:43
+      7    0.0%    0.0%  LazyCompile: Client.ondata C:\Users\pfesz\Desktop\100mil\node_modules\socket.io\lib\client.js:173:35
+      7    0.0%    0.0%  LazyCompile: *encodeAsString C:\Users\pfesz\Desktop\100mil\node_modules\socket.io-parser\index.js:146:24
+      7    0.0%    0.0%  LazyCompile: *OutgoingMessage.end _http_outgoing.js:547:41
+      7    0.0%    0.0%  Handler: packet {90}
+      7    0.0%    0.0%  Handler: packet {79}
+      7    0.0%    0.0%  Handler: packet {73}
+      7    0.0%    0.0%  Handler: packet {48}
+      7    0.0%    0.0%  Handler: packet {40}
+      7    0.0%    0.0%  Handler: packet {38}
+      7    0.0%    0.0%  Handler: packet {26}
+      7    0.0%    0.0%  Handler: packet {22}
+      7    0.0%    0.0%  Handler: packet {106}
+      6    0.0%    0.0%  Stub: ToStringStub
+      6    0.0%    0.0%  Stub: RecordWriteStub {33}
+      6    0.0%    0.0%  Stub: RecordWriteStub {22}
+      6    0.0%    0.0%  Stub: LoadDictionaryElementStub
+      6    0.0%    0.0%  Stub: FastNewContextStub
+      6    0.0%    0.0%  Stub: CallICStub(args(4), NOT_NULL_OR_UNDEFINED, 
+      6    0.0%    0.0%  LazyCompile: *slice buffer.js:820:40
+      6    0.0%    0.0%  LazyCompile: *parse querystring.js:265:15
+      6    0.0%    0.0%  LazyCompile: *SimpleSlice native array.js:267:21
+      6    0.0%    0.0%  Handler: press
+      6    0.0%    0.0%  Handler: packet {86}
+      6    0.0%    0.0%  Handler: packet {85}
+      6    0.0%    0.0%  Handler: packet {78}
+      6    0.0%    0.0%  Handler: packet {71}
+      6    0.0%    0.0%  Handler: packet {63}
+      6    0.0%    0.0%  Handler: packet {50}
+      6    0.0%    0.0%  Handler: packet {37}
+      6    0.0%    0.0%  Handler: packet {34}
+      6    0.0%    0.0%  Handler: packet {33}
+      6    0.0%    0.0%  Handler: packet {32}
+      6    0.0%    0.0%  Handler: packet {30}
+      6    0.0%    0.0%  Handler: packet {27}
+      6    0.0%    0.0%  Handler: packet {103}
+      6    0.0%    0.0%  Handler: emit {4}
+      5    0.0%    0.0%  Stub: SubStringStub
+      5    0.0%    0.0%  Stub: RecordWriteStub {34}
+      5    0.0%    0.0%  Stub: LoadFieldStub {12}
+      5    0.0%    0.0%  Stub: LoadFastElementStub {1}
+      5    0.0%    0.0%  Stub: FastNewClosureStub {2}
+      5    0.0%    0.0%  Stub: CallICTrampolineStub {5}
+      5    0.0%    0.0%  Stub: CallICTrampolineStub {4}
+      5    0.0%    0.0%  Stub: CallICTrampolineStub {2}
+      5    0.0%    0.0%  LazyCompile: ~decodeString C:\Users\pfesz\Desktop\100mil\node_modules\socket.io-parser\index.js:273:22
+      5    0.0%    0.0%  LazyCompile: ~<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\socket.io\lib\socket.js:499:30
+      5    0.0%    0.0%  LazyCompile: *start C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\Receiver.js:451:20
+      5    0.0%    0.0%  LazyCompile: *removeListener events.js:316:28
+      5    0.0%    0.0%  LazyCompile: *has native collection.js:290:16
+      5    0.0%    0.0%  LazyCompile: *connectionListener _http_server.js:262:28
+      5    0.0%    0.0%  LazyCompile: *WebSocket.onData C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\transports\websocket.js:77:39
+      5    0.0%    0.0%  LazyCompile: *Socket net.js:125:16
+      5    0.0%    0.0%  LazyCompile: *DefineIndexedProperty native array.js:48:31
+      5    0.0%    0.0%  Handler: request
+      5    0.0%    0.0%  Handler: packet {89}
+      5    0.0%    0.0%  Handler: packet {75}
+      5    0.0%    0.0%  Handler: packet {56}
+      5    0.0%    0.0%  Handler: packet {55}
+      5    0.0%    0.0%  Handler: packet {46}
+      5    0.0%    0.0%  Handler: packet {29}
+      5    0.0%    0.0%  Handler: packet {21}
+      5    0.0%    0.0%  Handler: packet {111}
+      5    0.0%    0.0%  Handler: length {13}
+      5    0.0%    0.0%  Handler: emit
+      5    0.0%    0.0%  Handler: _events {3}
+      5    0.0%    0.0%  Handler: Number
+      4    0.0%    0.0%  Stub: VectorStoreICTrampolineStub {1}
+      4    0.0%    0.0%  Stub: VectorKeyedStoreICStub
+      4    0.0%    0.0%  Stub: ToBooleanICStub(Undefined,SpecObject)
+      4    0.0%    0.0%  Stub: StringAddStub_ConvertLeft_NotTenured
+      4    0.0%    0.0%  Stub: StoreTransitionStub {6}
+      4    0.0%    0.0%  Stub: StoreFieldStub {3}
+      4    0.0%    0.0%  Stub: NameDictionaryLookupStub
+      4    0.0%    0.0%  Stub: LoadConstantStub {13}
+      4    0.0%    0.0%  Stub: FastNewSloppyArgumentsStub
+      4    0.0%    0.0%  Stub: CallICStub(args(0), ANY, 
+      4    0.0%    0.0%  Stub: BinaryOpWithAllocationSiteStub(ADD_CreateAllocationMementos:Number*String->String)
+      4    0.0%    0.0%  LazyCompile: ~removeListener events.js:316:28
+      4    0.0%    0.0%  LazyCompile: ~charAt native string.js:42:24
+      4    0.0%    0.0%  LazyCompile: ~byteLength buffer.js:343:20
+      4    0.0%    0.0%  LazyCompile: createUnsafeBuffer buffer.js:35:28
+      4    0.0%    0.0%  LazyCompile: *storeHeader _http_outgoing.js:311:21
+      4    0.0%    0.0%  LazyCompile: *normalizeStringWin32 path.js:12:30
+      4    0.0%    0.0%  LazyCompile: *howMuchToRead _stream_readable.js:245:23
+      4    0.0%    0.0%  LazyCompile: *checkInvalidHeaderChar _http_common.js:303:32
+      4    0.0%    0.0%  LazyCompile: *Socket.run C:\Users\pfesz\Desktop\100mil\node_modules\socket.io\lib\socket.js:528:32
+      4    0.0%    0.0%  LazyCompile: *Receiver.flush C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\Receiver.js:338:36
+      4    0.0%    0.0%  Handler: substr
+      4    0.0%    0.0%  Handler: read {1}
+      4    0.0%    0.0%  Handler: packet {41}
+      4    0.0%    0.0%  Handler: onevent {2}
+      4    0.0%    0.0%  Handler: global
+      4    0.0%    0.0%  Handler: domain {15}
+      4    0.0%    0.0%  Handler: domain {10}
+      4    0.0%    0.0%  Handler: _write {8}
+      4    0.0%    0.0%  Builtin: ArrayIsArray
+      3    0.0%    0.0%  Stub: ToBooleanICStub(Null)
+      3    0.0%    0.0%  Stub: StoreFieldStub {9}
+      3    0.0%    0.0%  Stub: StoreFieldStub {1}
+      3    0.0%    0.0%  Stub: StoreFieldStub {10}
+      3    0.0%    0.0%  Stub: StoreFastElementStub
+      3    0.0%    0.0%  Stub: RecordWriteStub {1}
+      3    0.0%    0.0%  Stub: NameDictionaryLookupStub {1}
+      3    0.0%    0.0%  Stub: LoadConstantStub {3}
+      3    0.0%    0.0%  Stub: LoadConstantStub {18}
+      3    0.0%    0.0%  Stub: LoadConstantStub {15}
+      3    0.0%    0.0%  Stub: FunctionPrototypeStub
+      3    0.0%    0.0%  Stub: CompareICStub {12}
+      3    0.0%    0.0%  Stub: CallICTrampolineStub {7}
+      3    0.0%    0.0%  Stub: CallApiCallbackStub {3}
+      3    0.0%    0.0%  LazyCompile: ~Buffer.concat buffer.js:293:25
+      3    0.0%    0.0%  LazyCompile: <anonymous> C:\Users\pfesz\Desktop\100mil\app.js:25:22
+      3    0.0%    0.0%  LazyCompile: *unmask C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\BufferUtil.fallback.js:31:19
+      3    0.0%    0.0%  LazyCompile: *join native array.js:347:19
+      3    0.0%    0.0%  LazyCompile: *freeParser _http_common.js:186:20
+      3    0.0%    0.0%  LazyCompile: *filter native array.js:927:21
+      3    0.0%    0.0%  LazyCompile: *exec native regexp.js:116:30
+      3    0.0%    0.0%  LazyCompile: *db.press C:\Users\pfesz\Desktop\100mil\lib\db.js:22:21
+      3    0.0%    0.0%  LazyCompile: *Stream internal/streams/legacy.js:6:16
+      3    0.0%    0.0%  LazyCompile: *Socket.onPacket C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\socket.js:79:38
+      3    0.0%    0.0%  LazyCompile: *Socket.destroySoon net.js:452:40
+      3    0.0%    0.0%  LazyCompile: *ServerResponse.assignSocket _http_server.js:134:49
+      3    0.0%    0.0%  LazyCompile: *ReadableState _stream_readable.js:35:23
+      3    0.0%    0.0%  LazyCompile: *Readable.on _stream_readable.js:686:33
+      3    0.0%    0.0%  LazyCompile: *EventEmitter events.js:11:22
+      3    0.0%    0.0%  LazyCompile: *ConvertToString native array.js:185:25
+      3    0.0%    0.0%  LazyCompile: *Buffer.toString buffer.js:487:37
+      3    0.0%    0.0%  LazyCompile: *<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\server.js:429:33
+      3    0.0%    0.0%  LazyCompile: *<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\server.js:291:38
+      3    0.0%    0.0%  Handler: symbol("nonexistent_symbol" hash 38d232ae)
+      3    0.0%    0.0%  Handler: push
+      3    0.0%    0.0%  Handler: packet {8}
+      3    0.0%    0.0%  Handler: packet {24}
+      3    0.0%    0.0%  Handler: onpacket {2}
+      3    0.0%    0.0%  Handler: once
+      3    0.0%    0.0%  Handler: on {1}
+      3    0.0%    0.0%  Handler: nsp
+      3    0.0%    0.0%  Handler: length {57}
+      3    0.0%    0.0%  Handler: length {52}
+      3    0.0%    0.0%  Handler: length {47}
+      3    0.0%    0.0%  Handler: length {35}
+      3    0.0%    0.0%  Handler: length {21}
+      3    0.0%    0.0%  Handler: length {16}
+      3    0.0%    0.0%  Handler: length {15}
+      3    0.0%    0.0%  Handler: get {5}
+      3    0.0%    0.0%  Handler: domain {4}
+      3    0.0%    0.0%  Handler: domain {47}
+      3    0.0%    0.0%  Handler: domain {16}
+      3    0.0%    0.0%  Handler: disconnect
+      3    0.0%    0.0%  Handler: compress
+      3    0.0%    0.0%  Handler: add
+      3    0.0%    0.0%  Handler: _maxListeners {1}
+      3    0.0%    0.0%  Handler: _events {9}
+      3    0.0%    0.0%  Handler: Math
+      3    0.0%    0.0%  Handler: Buffer {3}
+      2    0.0%    0.0%  Stub: ToIntegerStub
+      2    0.0%    0.0%  Stub: StoreTransitionStub {4}
+      2    0.0%    0.0%  Stub: StoreTransitionStub {3}
+      2    0.0%    0.0%  Stub: StoreFieldStub {7}
+      2    0.0%    0.0%  Stub: StoreFieldStub {5}
+      2    0.0%    0.0%  Stub: StoreFieldStub {15}
+      2    0.0%    0.0%  Stub: StoreFieldStub {14}
+      2    0.0%    0.0%  Stub: StoreFieldStub {11}
+      2    0.0%    0.0%  Stub: StoreFieldStub
+      2    0.0%    0.0%  Stub: RecordWriteStub {48}
+      2    0.0%    0.0%  Stub: RecordWriteStub {39}
+      2    0.0%    0.0%  Stub: RecordWriteStub {10}
+      2    0.0%    0.0%  Stub: LoadFieldStub {22}
+      2    0.0%    0.0%  Stub: LoadFieldStub {16}
+      2    0.0%    0.0%  Stub: LoadConstantStub {9}
+      2    0.0%    0.0%  Stub: KeyedLoadSloppyArgumentsStub
+      2    0.0%    0.0%  Stub: FastNewClosureStub {3}
+      2    0.0%    0.0%  Stub: FastNewClosureStub {1}
+      2    0.0%    0.0%  Stub: CompareICStub {8}
+      2    0.0%    0.0%  Stub: CompareICStub {14}
+      2    0.0%    0.0%  Stub: CompareICStub {11}
+      2    0.0%    0.0%  Stub: CallICStub(args(3), ANY, 
+      2    0.0%    0.0%  Stub: BinaryOpICWithAllocationSiteStub(ADD_CreateAllocationMementos:Smi*String->String)
+      2    0.0%    0.0%  Stub: BinaryOpICStub(MOD:Smi*Smi->Smi)
+      2    0.0%    0.0%  Stub: AllocateInNewSpaceStub
+      2    0.0%    0.0%  LazyCompile: ~slowToString buffer.js:420:22
+      2    0.0%    0.0%  LazyCompile: ~onParserExecuteCommon _http_server.js:380:33
+      2    0.0%    0.0%  LazyCompile: ~emitPendingUnhandledRejections internal/process/promises.js:58:42
+      2    0.0%    0.0%  LazyCompile: ~Socket._writeGeneric net.js:661:42
+      2    0.0%    0.0%  LazyCompile: ~Socket._destroy net.js:463:37
+      2    0.0%    0.0%  LazyCompile: ~<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\Receiver.js:507:41
+      2    0.0%    0.0%  LazyCompile: ~<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\socket.io\lib\socket.js:498:27
+      2    0.0%    0.0%  LazyCompile: ~<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\options\lib\options.js:11:41
+      2    0.0%    0.0%  LazyCompile: ~<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\server.js:205:36
+      2    0.0%    0.0%  LazyCompile: *substr native string.js:324:22
+      2    0.0%    0.0%  LazyCompile: *stringify native json.js:176:23
+      2    0.0%    0.0%  LazyCompile: *slowToString buffer.js:420:22
+      2    0.0%    0.0%  LazyCompile: *serialize C:\Users\pfesz\Desktop\100mil\node_modules\cookie\index.js:101:19
+      2    0.0%    0.0%  LazyCompile: *remove internal/linkedlist.js:35:16
+      2    0.0%    0.0%  LazyCompile: *parseInt native v8natives.js:36:24
+      2    0.0%    0.0%  LazyCompile: *map native array.js:994:18
+      2    0.0%    0.0%  LazyCompile: *isEmpty internal/linkedlist.js:68:17
+      2    0.0%    0.0%  LazyCompile: *get C:\Users\pfesz\Desktop\100mil\node_modules\socket.io\lib\socket.js:87:18
+      2    0.0%    0.0%  LazyCompile: *_hasBinary C:\Users\pfesz\Desktop\100mil\node_modules\has-binary\index.js:25:22
+      2    0.0%    0.0%  LazyCompile: *Socket._read net.js:409:34
+      2    0.0%    0.0%  LazyCompile: *Receiver.expectData C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\Receiver.js:161:41
+      2    0.0%    0.0%  LazyCompile: *Readable.setEncoding _stream_readable.js:216:42
+      2    0.0%    0.0%  LazyCompile: *Readable _stream_readable.js:104:18
+      2    0.0%    0.0%  LazyCompile: *OutgoingMessage._writeRaw _http_outgoing.js:147:47
+      2    0.0%    0.0%  LazyCompile: *OutgoingMessage._storeHeader _http_outgoing.js:192:50
+      2    0.0%    0.0%  LazyCompile: *OutgoingMessage._send _http_outgoing.js:125:43
+      2    0.0%    0.0%  LazyCompile: *IncomingMessage._addHeaderLine _http_incoming.js:132:52
+      2    0.0%    0.0%  LazyCompile: *IncomingMessage _http_incoming.js:20:25
+      2    0.0%    0.0%  LazyCompile: *Decoder.add C:\Users\pfesz\Desktop\100mil\node_modules\socket.io-parser\index.js:234:33
+      2    0.0%    0.0%  LazyCompile: *ArraySpeciesCreate native array.js:39:28
+      2    0.0%    0.0%  LazyCompile: *<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\BufferPool.js:32:41
+      2    0.0%    0.0%  LazyCompile: *<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\querystrings\node_modules\sugar\release\sugar-full.development.js:177:20
+      2    0.0%    0.0%  Handler: removeListener {2}
+      2    0.0%    0.0%  Handler: press {1}
+      2    0.0%    0.0%  Handler: packet {83}
+      2    0.0%    0.0%  Handler: packet {59}
+      2    0.0%    0.0%  Handler: packet {4}
+      2    0.0%    0.0%  Handler: packet {2}
+      2    0.0%    0.0%  Handler: packet {23}
+      2    0.0%    0.0%  Handler: packet {1}
+      2    0.0%    0.0%  Handler: length {9}
+      2    0.0%    0.0%  Handler: length {72}
+      2    0.0%    0.0%  Handler: length {67}
+      2    0.0%    0.0%  Handler: length {63}
+      2    0.0%    0.0%  Handler: length {56}
+      2    0.0%    0.0%  Handler: length {50}
+      2    0.0%    0.0%  Handler: length {40}
+      2    0.0%    0.0%  Handler: length {38}
+      2    0.0%    0.0%  Handler: length {36}
+      2    0.0%    0.0%  Handler: length {33}
+      2    0.0%    0.0%  Handler: length {27}
+      2    0.0%    0.0%  Handler: length {22}
+      2    0.0%    0.0%  Handler: length {18}
+      2    0.0%    0.0%  Handler: length {14}
+      2    0.0%    0.0%  Handler: length {12}
+      2    0.0%    0.0%  Handler: length {11}
+      2    0.0%    0.0%  Handler: length {10}
+      2    0.0%    0.0%  Handler: global {1}
+      2    0.0%    0.0%  Handler: flush
+      2    0.0%    0.0%  Handler: domain {85}
+      2    0.0%    0.0%  Handler: domain {82}
+      2    0.0%    0.0%  Handler: domain {70}
+      2    0.0%    0.0%  Handler: domain {65}
+      2    0.0%    0.0%  Handler: domain {58}
+      2    0.0%    0.0%  Handler: domain {54}
+      2    0.0%    0.0%  Handler: domain {53}
+      2    0.0%    0.0%  Handler: domain {48}
+      2    0.0%    0.0%  Handler: domain {46}
+      2    0.0%    0.0%  Handler: domain {41}
+      2    0.0%    0.0%  Handler: domain {30}
+      2    0.0%    0.0%  Handler: domain {28}
+      2    0.0%    0.0%  Handler: domain {17}
+      2    0.0%    0.0%  Handler: domain {11}
+      2    0.0%    0.0%  Handler: call {1}
+      2    0.0%    0.0%  Handler: applyExtensions
+      2    0.0%    0.0%  Handler: _write {6}
+      2    0.0%    0.0%  Handler: _write {2}
+      2    0.0%    0.0%  Handler: _processChunk
+      2    0.0%    0.0%  Handler: _events {6}
+      2    0.0%    0.0%  Handler: _events {4}
+      2    0.0%    0.0%  Handler: File
+      2    0.0%    0.0%  Handler: Buffer {1}
+      2    0.0%    0.0%  Builtin: NumberConstructor
+      2    0.0%    0.0%  Builtin: FunctionPrototypeBind
+      2    0.0%    0.0%  Builtin: ArrayBufferConstructor_ConstructStub
+      1    0.0%    0.0%  Stub: StoreTransitionStub {9}
+      1    0.0%    0.0%  Stub: StoreTransitionStub {10}
+      1    0.0%    0.0%  Stub: StoreTransitionStub
+      1    0.0%    0.0%  Stub: StoreFieldStub {4}
+      1    0.0%    0.0%  Stub: StoreFieldStub {2}
+      1    0.0%    0.0%  Stub: StoreFieldStub {19}
+      1    0.0%    0.0%  Stub: StoreFieldStub {18}
+      1    0.0%    0.0%  Stub: StoreFieldStub {17}
+      1    0.0%    0.0%  Stub: StoreFieldStub {13}
+      1    0.0%    0.0%  Stub: StoreFieldStub {12}
+      1    0.0%    0.0%  Stub: RecordWriteStub {50}
+      1    0.0%    0.0%  Stub: RecordWriteStub {49}
+      1    0.0%    0.0%  Stub: RecordWriteStub {47}
+      1    0.0%    0.0%  Stub: RecordWriteStub {45}
+      1    0.0%    0.0%  Stub: RecordWriteStub {44}
+      1    0.0%    0.0%  Stub: RecordWriteStub {43}
+      1    0.0%    0.0%  Stub: RecordWriteStub {42}
+      1    0.0%    0.0%  Stub: RecordWriteStub {41}
+      1    0.0%    0.0%  Stub: RecordWriteStub {40}
+      1    0.0%    0.0%  Stub: RecordWriteStub {37}
+      1    0.0%    0.0%  Stub: RecordWriteStub {32}
+      1    0.0%    0.0%  Stub: RecordWriteStub {26}
+      1    0.0%    0.0%  Stub: RecordWriteStub {23}
+      1    0.0%    0.0%  Stub: RecordWriteStub {16}
+      1    0.0%    0.0%  Stub: RecordWriteStub {13}
+      1    0.0%    0.0%  Stub: RecordWriteStub
+      1    0.0%    0.0%  Stub: LoadFieldStub {8}
+      1    0.0%    0.0%  Stub: LoadFieldStub {3}
+      1    0.0%    0.0%  Stub: LoadFieldStub {23}
+      1    0.0%    0.0%  Stub: LoadFieldStub {21}
+      1    0.0%    0.0%  Stub: LoadFieldStub {20}
+      1    0.0%    0.0%  Stub: LoadFieldStub {18}
+      1    0.0%    0.0%  Stub: LoadFieldStub {17}
+      1    0.0%    0.0%  Stub: LoadFieldStub {13}
+      1    0.0%    0.0%  Stub: LoadFieldStub
+      1    0.0%    0.0%  Stub: LoadFastElementStub {2}
+      1    0.0%    0.0%  Stub: LoadFastElementStub
+      1    0.0%    0.0%  Stub: LoadConstantStub {19}
+      1    0.0%    0.0%  Stub: InternalArraySingleArgumentConstructorStub
+      1    0.0%    0.0%  Stub: FastCloneRegExpStub
+      1    0.0%    0.0%  Stub: CompareICStub {9}
+      1    0.0%    0.0%  Stub: CompareICStub {1}
+      1    0.0%    0.0%  Stub: CompareICStub {17}
+      1    0.0%    0.0%  Stub: CompareICStub {16}
+      1    0.0%    0.0%  Stub: CompareICStub {15}
+      1    0.0%    0.0%  Stub: CompareICStub {13}
+      1    0.0%    0.0%  Stub: CompareICStub
+      1    0.0%    0.0%  Stub: CallICTrampolineStub {8}
+      1    0.0%    0.0%  Stub: CallICTrampolineStub
+      1    0.0%    0.0%  Stub: CallICStub(args(0), NOT_NULL_OR_UNDEFINED, 
+      1    0.0%    0.0%  Stub: CallApiCallbackStub {4}
+      1    0.0%    0.0%  Stub: BinaryOpICWithAllocationSiteStub(ADD_CreateAllocationMementos:String*String->String) {1}
+      1    0.0%    0.0%  Stub: BinaryOpICWithAllocationSiteStub(ADD_CreateAllocationMementos:String*String->String)
+      1    0.0%    0.0%  Stub: BinaryOpICStub(BIT_XOR:Smi*Smi->Smi)
+      1    0.0%    0.0%  Stub: BinaryOpICStub(BIT_XOR:Number*Number->Smi)
+      1    0.0%    0.0%  Stub: ArrayConstructorStub_Any
+      1    0.0%    0.0%  RegExp: ^[\\u0009\\u0020-\\u007e\\u0080-\\u00ff]+$
+      1    0.0%    0.0%  RegExp: ^Transfer-Encoding$
+      1    0.0%    0.0%  RegExp: ^Content-Length$
+      1    0.0%    0.0%  RegExp: [\\r\\n]
+      1    0.0%    0.0%  LazyCompile: ~unpack C:\Users\pfesz\Desktop\100mil\lib\encoding.js:73:17
+      1    0.0%    0.0%  LazyCompile: ~trim native string.js:364:22
+      1    0.0%    0.0%  LazyCompile: ~stringToBuffer C:\Users\pfesz\Desktop\100mil\node_modules\engine.io-parser\lib\index.js:351:24
+      1    0.0%    0.0%  LazyCompile: ~some native array.js:971:19
+      1    0.0%    0.0%  LazyCompile: ~serverSocketCloseListener _http_server.js:287:37
+      1    0.0%    0.0%  LazyCompile: ~resOnFinish _http_server.js:499:25
+      1    0.0%    0.0%  LazyCompile: ~preferredEncodings C:\Users\pfesz\Desktop\100mil\node_modules\negotiator\lib\encoding.js:138:28
+      1    0.0%    0.0%  LazyCompile: ~middleware C:\Users\pfesz\Desktop\100mil\node_modules\connect-static\index.js:96:24
+      1    0.0%    0.0%  LazyCompile: ~hasBinary C:\Users\pfesz\Desktop\100mil\node_modules\has-binary\index.js:23:19
+      1    0.0%    0.0%  LazyCompile: ~getFile.file C:\Users\pfesz\Desktop\100mil\lib\db.js:16:22
+      1    0.0%    0.0%  LazyCompile: ~get buffer native typedarray.js:1494:29
+      1    0.0%    0.0%  LazyCompile: ~debugs.(anonymous function) util.js:153:29
+      1    0.0%    0.0%  LazyCompile: ~_flushOutput _http_outgoing.js:666:63
+      1    0.0%    0.0%  LazyCompile: ~Zlib._processChunk zlib.js:530:40
+      1    0.0%    0.0%  LazyCompile: ~Zlib zlib.js:299:14
+      1    0.0%    0.0%  LazyCompile: ~Socket.destroy net.js:521:36
+      1    0.0%    0.0%  LazyCompile: ~ServerResponse.writeHead _http_server.js:160:46
+      1    0.0%    0.0%  LazyCompile: ~ServerResponse._finish _http_server.js:99:44
+      1    0.0%    0.0%  LazyCompile: ~Sender.flush C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\Sender.js:263:34
+      1    0.0%    0.0%  LazyCompile: ~Receiver.applyExtensions C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\Receiver.js:359:46
+      1    0.0%    0.0%  LazyCompile: ~Polling.doWrite C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\transports\polling.js:277:38
+      1    0.0%    0.0%  LazyCompile: ~NativeModule.nonInternalExists bootstrap_node.js:457:46
+      1    0.0%    0.0%  LazyCompile: ~Mime.define C:\Users\pfesz\Desktop\100mil\node_modules\mime\mime.js:21:34
+      1    0.0%    0.0%  LazyCompile: ~InnerArrayIndexOf native array.js:1009:27
+      1    0.0%    0.0%  LazyCompile: ~InnerArrayForEach native array.js:935:27
+      1    0.0%    0.0%  LazyCompile: ~<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\Receiver.js:347:19
+      1    0.0%    0.0%  LazyCompile: ~<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\Extensions.js:26:28
+      1    0.0%    0.0%  LazyCompile: ~<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\sugar\sugar-full.js:7093:23
+      1    0.0%    0.0%  LazyCompile: ~<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\sugar\sugar-full.js:116:22
+      1    0.0%    0.0%  LazyCompile: ~<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\socket.io\lib\index.js:268:29
+      1    0.0%    0.0%  LazyCompile: ~<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\socket.io\lib\client.js:194:32
+      1    0.0%    0.0%  LazyCompile: completeHybiUpgrade2 C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\WebSocketServer.js:216:38
+      1    0.0%    0.0%  LazyCompile: Server.handshake C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\server.js:264:39
+      1    0.0%    0.0%  LazyCompile: Join native array.js:172:14
+      1    0.0%    0.0%  LazyCompile: <anonymous> native messages.js:637:21
+      1    0.0%    0.0%  LazyCompile: *utcDate _http_outgoing.js:34:17
+      1    0.0%    0.0%  LazyCompile: *toString native v8natives.js:642:26
+      1    0.0%    0.0%  LazyCompile: *test native regexp.js:260:28
+      1    0.0%    0.0%  LazyCompile: *substring native string.js:298:25
+      1    0.0%    0.0%  LazyCompile: *specify C:\Users\pfesz\Desktop\100mil\node_modules\negotiator\lib\encoding.js:117:17
+      1    0.0%    0.0%  LazyCompile: *slice native string.js:246:21
+      1    0.0%    0.0%  LazyCompile: *realHandler C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\WebSocket.js:823:23
+      1    0.0%    0.0%  LazyCompile: *ontext C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\WebSocket.js:838:42
+      1    0.0%    0.0%  LazyCompile: *isValidErrorCode C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\ErrorCodes.js:8:29
+      1    0.0%    0.0%  LazyCompile: *getStderr internal/process/stdio.js:21:21
+      1    0.0%    0.0%  LazyCompile: *forEach native array.js:954:22
+      1    0.0%    0.0%  LazyCompile: *exports.decodePayload C:\Users\pfesz\Desktop\100mil\node_modules\engine.io-parser\lib\index.js:267:34
+      1    0.0%    0.0%  LazyCompile: *endReadableNT _stream_readable.js:969:23
+      1    0.0%    0.0%  LazyCompile: *emitPendingUnhandledRejections internal/process/promises.js:58:42
+      1    0.0%    0.0%  LazyCompile: *emitNone events.js:84:18
+      1    0.0%    0.0%  LazyCompile: *clearBuffer _stream_writable.js:400:21
+      1    0.0%    0.0%  LazyCompile: *check C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\socket.js:218:18
+      1    0.0%    0.0%  LazyCompile: *callbackCheck C:\Users\pfesz\Desktop\100mil\node_modules\querystrings\node_modules\sugar\release\sugar-full.development.js:1423:33
+      1    0.0%    0.0%  LazyCompile: *[Symbol.replace] native regexp.js:540:23
+      1    0.0%    0.0%  LazyCompile: *StackPush native array.js:114:19
+      1    0.0%    0.0%  LazyCompile: *Socket.onpacket C:\Users\pfesz\Desktop\100mil\node_modules\socket.io\lib\socket.js:306:37
+      1    0.0%    0.0%  LazyCompile: *Socket._destroy net.js:463:37
+      1    0.0%    0.0%  LazyCompile: *ServerResponse.writeHead _http_server.js:160:46
+      1    0.0%    0.0%  LazyCompile: *Server.verify C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\server.js:129:36
+      1    0.0%    0.0%  LazyCompile: *Server.handleRequest C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\server.js:199:43
+      1    0.0%    0.0%  LazyCompile: *Server._emitCloseIfDrained net.js:1537:48
+      1    0.0%    0.0%  LazyCompile: *Polling.onPollRequest C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\transports\polling.js:80:44
+      1    0.0%    0.0%  LazyCompile: *Polling.onDataRequest C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\transports\polling.js:125:44
+      1    0.0%    0.0%  LazyCompile: *OutgoingMessage.write _http_outgoing.js:438:43
+      1    0.0%    0.0%  LazyCompile: *OutgoingMessage _http_outgoing.js:48:25
+      1    0.0%    0.0%  LazyCompile: *InnerArraySome native array.js:960:24
+      1    0.0%    0.0%  LazyCompile: *InnerArrayForEach native array.js:935:27
+      1    0.0%    0.0%  LazyCompile: *IncomingMessage.read _http_incoming.js:76:42
+      1    0.0%    0.0%  LazyCompile: *Encode native uri.js:131:16
+      1    0.0%    0.0%  LazyCompile: *Client.ondecoded C:\Users\pfesz\Desktop\100mil\node_modules\socket.io\lib\client.js:188:38
+      1    0.0%    0.0%  LazyCompile: *CallSiteToString native messages.js:416:26
+      1    0.0%    0.0%  LazyCompile: *CallSiteGetColumnNumber native messages.js:404:33
+      1    0.0%    0.0%  LazyCompile: *Buffer.allocUnsafe buffer.js:139:30
+      1    0.0%    0.0%  LazyCompile: *Accepts C:\Users\pfesz\Desktop\100mil\node_modules\accepts\index.js:32:17
+      1    0.0%    0.0%  LazyCompile: *<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\Receiver.js:42:14
+      1    0.0%    0.0%  LazyCompile: *<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\querystrings\node_modules\sugar\release\sugar-full.development.js:2741:37
+      1    0.0%    0.0%  Handler: writeHead
+      1    0.0%    0.0%  Handler: write {3}
+      1    0.0%    0.0%  Handler: write {2}
+      1    0.0%    0.0%  Handler: upgrade
+      1    0.0%    0.0%  Handler: toString {NaN}
+      1    0.0%    0.0%  Handler: symbol("Symbol.hasInstance" hash f8ebc88) {2}
+      1    0.0%    0.0%  Handler: statusMessage
+      1    0.0%    0.0%  Handler: slice
+      1    0.0%    0.0%  Handler: shouldKeepAlive
+      1    0.0%    0.0%  Handler: shift
+      1    0.0%    0.0%  Handler: run {5}
+      1    0.0%    0.0%  Handler: run {2}
+      1    0.0%    0.0%  Handler: resume {4}
+      1    0.0%    0.0%  Handler: resetLoads
+      1    0.0%    0.0%  Handler: reset {6}
+      1    0.0%    0.0%  Handler: reset {3}
+      1    0.0%    0.0%  Handler: reset {2}
+      1    0.0%    0.0%  Handler: reset {1}
+      1    0.0%    0.0%  Handler: removeListener {3}
+      1    0.0%    0.0%  Handler: read {3}
+      1    0.0%    0.0%  Handler: protocolVersion
+      1    0.0%    0.0%  Handler: pop
+      1    0.0%    0.0%  Handler: parseInt
+      1    0.0%    0.0%  Handler: packet {98}
+      1    0.0%    0.0%  Handler: packet {92}
+      1    0.0%    0.0%  Handler: packet {87}
+      1    0.0%    0.0%  Handler: packet {82}
+      1    0.0%    0.0%  Handler: packet {74}
+      1    0.0%    0.0%  Handler: packet {5}
+      1    0.0%    0.0%  Handler: packet {58}
+      1    0.0%    0.0%  Handler: packet {57}
+      1    0.0%    0.0%  Handler: packet {54}
+      1    0.0%    0.0%  Handler: packet {51}
+      1    0.0%    0.0%  Handler: packet {47}
+      1    0.0%    0.0%  Handler: packet {3}
+      1    0.0%    0.0%  Handler: packet {35}
+      1    0.0%    0.0%  Handler: packet {31}
+      1    0.0%    0.0%  Handler: packet {28}
+      1    0.0%    0.0%  Handler: packet {17}
+      1    0.0%    0.0%  Handler: packet {14}
+      1    0.0%    0.0%  Handler: packet {109}
+      1    0.0%    0.0%  Handler: packet {104}
+      1    0.0%    0.0%  Handler: packet
+      1    0.0%    0.0%  Handler: opcode {1}
+      1    0.0%    0.0%  Handler: onping
+      1    0.0%    0.0%  Handler: onpacket {4}
+      1    0.0%    0.0%  Handler: onpacket {1}
+      1    0.0%    0.0%  Handler: onpacket
+      1    0.0%    0.0%  Handler: onevent {5}
+      1    0.0%    0.0%  Handler: onevent {4}
+      1    0.0%    0.0%  Handler: oncomplete {2}
+      1    0.0%    0.0%  Handler: oncomplete {1}
+      1    0.0%    0.0%  Handler: once {1}
+      1    0.0%    0.0%  Handler: onWebSocket
+      1    0.0%    0.0%  Handler: on {5}
+      1    0.0%    0.0%  Handler: on {3}
+      1    0.0%    0.0%  Handler: on {2}
+      1    0.0%    0.0%  Handler: masked
+      1    0.0%    0.0%  Handler: listener
+      1    0.0%    0.0%  Handler: length {8}
+      1    0.0%    0.0%  Handler: length {73}
+      1    0.0%    0.0%  Handler: length {71}
+      1    0.0%    0.0%  Handler: length {70}
+      1    0.0%    0.0%  Handler: length {6}
+      1    0.0%    0.0%  Handler: length {69}
+      1    0.0%    0.0%  Handler: length {68}
+      1    0.0%    0.0%  Handler: length {66}
+      1    0.0%    0.0%  Handler: length {61}
+      1    0.0%    0.0%  Handler: length {60}
+      1    0.0%    0.0%  Handler: length {5}
+      1    0.0%    0.0%  Handler: length {59}
+      1    0.0%    0.0%  Handler: length {55}
+      1    0.0%    0.0%  Handler: length {54}
+      1    0.0%    0.0%  Handler: length {53}
+      1    0.0%    0.0%  Handler: length {51}
+      1    0.0%    0.0%  Handler: length {48}
+      1    0.0%    0.0%  Handler: length {46}
+      1    0.0%    0.0%  Handler: length {45}
+      1    0.0%    0.0%  Handler: length {44}
+      1    0.0%    0.0%  Handler: length {43}
+      1    0.0%    0.0%  Handler: length {41}
+      1    0.0%    0.0%  Handler: length {37}
+      1    0.0%    0.0%  Handler: length {34}
+      1    0.0%    0.0%  Handler: length {32}
+      1    0.0%    0.0%  Handler: length {31}
+      1    0.0%    0.0%  Handler: length {30}
+      1    0.0%    0.0%  Handler: length {2}
+      1    0.0%    0.0%  Handler: length {28}
+      1    0.0%    0.0%  Handler: length {25}
+      1    0.0%    0.0%  Handler: length {24}
+      1    0.0%    0.0%  Handler: length {19}
+      1    0.0%    0.0%  Handler: length {17}
+      1    0.0%    0.0%  Handler: length
+      1    0.0%    0.0%  Handler: lastFragment {5}
+      1    0.0%    0.0%  Handler: lastFragment {4}
+      1    0.0%    0.0%  Handler: lastFragment {3}
+      1    0.0%    0.0%  Handler: lastFragment {2}
+      1    0.0%    0.0%  Handler: lastFragment {1}
+      1    0.0%    0.0%  Handler: lastFragment
+      1    0.0%    0.0%  Handler: join
+      1    0.0%    0.0%  Handler: headers
+      1    0.0%    0.0%  Handler: global {3}
+      1    0.0%    0.0%  Handler: global {2}
+      1    0.0%    0.0%  Handler: getCurrentBuffer
+      1    0.0%    0.0%  Handler: get {8}
+      1    0.0%    0.0%  Handler: get {6}
+      1    0.0%    0.0%  Handler: get {4}
+      1    0.0%    0.0%  Handler: get {3}
+      1    0.0%    0.0%  Handler: get {2}
+      1    0.0%    0.0%  Handler: get {1}
+      1    0.0%    0.0%  Handler: get
+      1    0.0%    0.0%  Handler: fragmentedOperation {1}
+      1    0.0%    0.0%  Handler: fragmentedOperation
+      1    0.0%    0.0%  Handler: flags
+      1    0.0%    0.0%  Handler: finish
+      1    0.0%    0.0%  Handler: filter
+      1    0.0%    0.0%  Handler: fillLast
+      1    0.0%    0.0%  Handler: expectData
+      1    0.0%    0.0%  Handler: error {2}
+      1    0.0%    0.0%  Handler: error {1}
+      1    0.0%    0.0%  Handler: end {1}
+      1    0.0%    0.0%  Handler: emit {6}
+      1    0.0%    0.0%  Handler: emit {2}
+      1    0.0%    0.0%  Handler: emit {1}
+      1    0.0%    0.0%  Handler: domain {9}
+      1    0.0%    0.0%  Handler: domain {90}
+      1    0.0%    0.0%  Handler: domain {8}
+      1    0.0%    0.0%  Handler: domain {89}
+      1    0.0%    0.0%  Handler: domain {88}
+      1    0.0%    0.0%  Handler: domain {87}
+      1    0.0%    0.0%  Handler: domain {86}
+      1    0.0%    0.0%  Handler: domain {84}
+      1    0.0%    0.0%  Handler: domain {83}
+      1    0.0%    0.0%  Handler: domain {81}
+      1    0.0%    0.0%  Handler: domain {80}
+      1    0.0%    0.0%  Handler: domain {7}
+      1    0.0%    0.0%  Handler: domain {79}
+      1    0.0%    0.0%  Handler: domain {78}
+      1    0.0%    0.0%  Handler: domain {77}
+      1    0.0%    0.0%  Handler: domain {76}
+      1    0.0%    0.0%  Handler: domain {75}
+      1    0.0%    0.0%  Handler: domain {74}
+      1    0.0%    0.0%  Handler: domain {73}
+      1    0.0%    0.0%  Handler: domain {72}
+      1    0.0%    0.0%  Handler: domain {71}
+      1    0.0%    0.0%  Handler: domain {6}
+      1    0.0%    0.0%  Handler: domain {69}
+      1    0.0%    0.0%  Handler: domain {67}
+      1    0.0%    0.0%  Handler: domain {66}
+      1    0.0%    0.0%  Handler: domain {64}
+      1    0.0%    0.0%  Handler: domain {63}
+      1    0.0%    0.0%  Handler: domain {62}
+      1    0.0%    0.0%  Handler: domain {61}
+      1    0.0%    0.0%  Handler: domain {60}
+      1    0.0%    0.0%  Handler: domain {5}
+      1    0.0%    0.0%  Handler: domain {59}
+      1    0.0%    0.0%  Handler: domain {57}
+      1    0.0%    0.0%  Handler: domain {56}
+      1    0.0%    0.0%  Handler: domain {55}
+      1    0.0%    0.0%  Handler: domain {50}
+      1    0.0%    0.0%  Handler: domain {49}
+      1    0.0%    0.0%  Handler: domain {44}
+      1    0.0%    0.0%  Handler: domain {43}
+      1    0.0%    0.0%  Handler: domain {42}
+      1    0.0%    0.0%  Handler: domain {40}
+      1    0.0%    0.0%  Handler: domain {3}
+      1    0.0%    0.0%  Handler: domain {39}
+      1    0.0%    0.0%  Handler: domain {38}
+      1    0.0%    0.0%  Handler: domain {37}
+      1    0.0%    0.0%  Handler: domain {36}
+      1    0.0%    0.0%  Handler: domain {35}
+      1    0.0%    0.0%  Handler: domain {34}
+      1    0.0%    0.0%  Handler: domain {32}
+      1    0.0%    0.0%  Handler: domain {31}
+      1    0.0%    0.0%  Handler: domain {29}
+      1    0.0%    0.0%  Handler: domain {27}
+      1    0.0%    0.0%  Handler: domain {26}
+      1    0.0%    0.0%  Handler: domain {25}
+      1    0.0%    0.0%  Handler: domain {24}
+      1    0.0%    0.0%  Handler: domain {23}
+      1    0.0%    0.0%  Handler: domain {22}
+      1    0.0%    0.0%  Handler: domain {21}
+      1    0.0%    0.0%  Handler: domain {20}
+      1    0.0%    0.0%  Handler: domain {1}
+      1    0.0%    0.0%  Handler: domain {19}
+      1    0.0%    0.0%  Handler: domain {14}
+      1    0.0%    0.0%  Handler: domain {12}
+      1    0.0%    0.0%  Handler: domain
+      1    0.0%    0.0%  Handler: detachSocket
+      1    0.0%    0.0%  Handler: data {2}
+      1    0.0%    0.0%  Handler: count
+      1    0.0%    0.0%  Handler: compress {1}
+      1    0.0%    0.0%  Handler: close {4}
+      1    0.0%    0.0%  Handler: close {3}
+      1    0.0%    0.0%  Handler: close {1}
+      1    0.0%    0.0%  Handler: clientTracking
+      1    0.0%    0.0%  Handler: charCodeAt
+      1    0.0%    0.0%  Handler: charAt
+      1    0.0%    0.0%  Handler: callback
+      1    0.0%    0.0%  Handler: call {5}
+      1    0.0%    0.0%  Handler: call {4}
+      1    0.0%    0.0%  Handler: call {3}
+      1    0.0%    0.0%  Handler: call {2}
+      1    0.0%    0.0%  Handler: call
+      1    0.0%    0.0%  Handler: bytesRead
+      1    0.0%    0.0%  Handler: broadcast {5}
+      1    0.0%    0.0%  Handler: broadcast {2}
+      1    0.0%    0.0%  Handler: broadcast {1}
+      1    0.0%    0.0%  Handler: broadcast
+      1    0.0%    0.0%  Handler: add {1}
+      1    0.0%    0.0%  Handler: activeFragmentedOperation {1}
+      1    0.0%    0.0%  Handler: activeFragmentedOperation
+      1    0.0%    0.0%  Handler: _writeRaw
+      1    0.0%    0.0%  Handler: _write {9}
+      1    0.0%    0.0%  Handler: _write {7}
+      1    0.0%    0.0%  Handler: _write {5}
+      1    0.0%    0.0%  Handler: _write {4}
+      1    0.0%    0.0%  Handler: _write {3}
+      1    0.0%    0.0%  Handler: _write {1}
+      1    0.0%    0.0%  Handler: _write {11}
+      1    0.0%    0.0%  Handler: _write {10}
+      1    0.0%    0.0%  Handler: _write
+      1    0.0%    0.0%  Handler: _unrefTimer
+      1    0.0%    0.0%  Handler: _rooms {3}
+      1    0.0%    0.0%  Handler: _readableState {3}
+      1    0.0%    0.0%  Handler: _readableState
+      1    0.0%    0.0%  Handler: _read
+      1    0.0%    0.0%  Handler: _maxListeners {3}
+      1    0.0%    0.0%  Handler: _maxListeners {2}
+      1    0.0%    0.0%  Handler: _idleStart
+      1    0.0%    0.0%  Handler: _eventsCount {9}
+      1    0.0%    0.0%  Handler: _eventsCount {6}
+      1    0.0%    0.0%  Handler: _eventsCount {10}
+      1    0.0%    0.0%  Handler: _events {8}
+      1    0.0%    0.0%  Handler: _events {16}
+      1    0.0%    0.0%  Handler: _emitCloseIfDrained
+      1    0.0%    0.0%  Handler: Object
+      1    0.0%    0.0%  Handler: Error
+      1    0.0%    0.0%  Handler: Content-Length
+      1    0.0%    0.0%  Handler: COUNTER_NET_SERVER_CONNECTION_CLOSE
+      1    0.0%    0.0%  Handler: Blob {2}
+      1    0.0%    0.0%  Handler: Blob {1}
+      1    0.0%    0.0%  Handler: Blob
+      1    0.0%    0.0%  Handler: ArrayBuffer
+      1    0.0%    0.0%  Handler: Array
+      1    0.0%    0.0%  Builtin: MathFloor
+      1    0.0%    0.0%  Builtin: MathCeil
+      1    0.0%    0.0%  Builtin: ArraySlice
+
+ [C++]:
+   ticks  total  nonlib   name
+
+ [Summary]:
+   ticks  total  nonlib   name
+  89245   26.4%   84.6%  JavaScript
+      0    0.0%    0.0%  C++
+   3872    1.1%    3.7%  GC
+  232844   68.8%          Shared libraries
+  16234    4.8%          Unaccounted
+
+ [C++ entry points]:
+   ticks    cpp   total   name
+
+ [Bottom up (heavy) profile]:
+  Note: percentage shows a share of a particular caller in the total
+  amount of its parent calls.
+  Callers occupying less than 2.0% are not shown.
+
+   ticks parent  name
+  159839   47.2%  C:\WINDOWS\SYSTEM32\ntdll.dll
+  44464   27.8%    LazyCompile: *createWriteReq net.js:733:24
+  44305   99.6%      LazyCompile: *Socket._writeGeneric net.js:661:42
+  44305  100.0%        LazyCompile: *Socket._write net.js:729:35
+  44305  100.0%          LazyCompile: *writeOrBuffer _stream_writable.js:292:23
+  44303  100.0%            LazyCompile: *Writable.write _stream_writable.js:221:36
+
+  71247   21.1%  C:\Program Files\nodejs\node.exe
+  55000   77.2%    C:\Program Files\nodejs\node.exe
+  15732   28.6%      LazyCompile: *encode C:\Users\pfesz\Desktop\100mil\lib\encoding.js:30:19
+  10023   63.7%        LazyCompile: *File.writeFile C:\Users\pfesz\Desktop\100mil\lib\file.js:140:37
+  10023  100.0%          LazyCompile: *File.flush C:\Users\pfesz\Desktop\100mil\lib\file.js:125:33
+  10023  100.0%            LazyCompile: *toilet.flushAll C:\Users\pfesz\Desktop\100mil\lib\toilet.js:16:28
+   5709   36.3%        LazyCompile: ~File.writeFile C:\Users\pfesz\Desktop\100mil\lib\file.js:140:37
+   5709  100.0%          LazyCompile: *File.flush C:\Users\pfesz\Desktop\100mil\lib\file.js:125:33
+   5709  100.0%            LazyCompile: *toilet.flushAll C:\Users\pfesz\Desktop\100mil\lib\toilet.js:16:28
+   6834   12.4%      LazyCompile: *emit events.js:136:44
+   4973   72.8%        LazyCompile: *Socket.flush C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\socket.js:409:35
+   3829   77.0%          LazyCompile: *Socket.sendPacket C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\socket.js:373:40
+   3826   99.9%            LazyCompile: *Socket.send.Socket.write C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\socket.js:359:35
+   1144   23.0%          LazyCompile: *emit events.js:136:44
+   1101   96.2%            LazyCompile: *onEnd C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\transports\websocket.js:117:18
+     42    3.7%            LazyCompile: *afterWrite _stream_writable.js:381:20
+   1703   24.9%        LazyCompile: *Socket.sendPacket C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\socket.js:373:40
+   1701   99.9%          LazyCompile: *Socket.send.Socket.write C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\socket.js:359:35
+   1701  100.0%            LazyCompile: ~writeToEngine C:\Users\pfesz\Desktop\100mil\node_modules\socket.io\lib\client.js:146:25
+   3451    6.3%      LazyCompile: Sender.frameAndSend C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\Sender.js:144:41
+   3451  100.0%        LazyCompile: ~<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\Sender.js:117:37
+   3450  100.0%          LazyCompile: *Sender.send C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\Sender.js:100:33
+   3450  100.0%            LazyCompile: *send C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\WebSocket.js:211:41
+   3037    5.5%      LazyCompile: ~<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\socket.io-adapter\index.js:121:39
+   3031   99.8%        LazyCompile: *Adapter.broadcast C:\Users\pfesz\Desktop\100mil\node_modules\socket.io-adapter\index.js:107:39
+   2372   78.3%          Handler: on {1}
+   2372  100.0%            LazyCompile: ~<anonymous> C:\Users\pfesz\Desktop\100mil\app.js:68:28
+    594   19.6%          LazyCompile: *Socket.emit C:\Users\pfesz\Desktop\100mil\node_modules\socket.io\lib\socket.js:139:33
+    594  100.0%            LazyCompile: ~<anonymous> C:\Users\pfesz\Desktop\100mil\app.js:68:28
+     65    2.1%          LazyCompile: ~Socket.emit C:\Users\pfesz\Desktop\100mil\node_modules\socket.io\lib\socket.js:139:33
+     65  100.0%            LazyCompile: ~<anonymous> C:\Users\pfesz\Desktop\100mil\app.js:68:28
+   2498    4.5%      LazyCompile: *_tickDomainCallback internal/process/next_tick.js:114:31
+   2492    4.5%      LazyCompile: *unpack C:\Users\pfesz\Desktop\100mil\lib\encoding.js:73:17
+   2492  100.0%        LazyCompile: ~encode C:\Users\pfesz\Desktop\100mil\lib\encoding.js:30:19
+   2492  100.0%          LazyCompile: ~File.writeFile C:\Users\pfesz\Desktop\100mil\lib\file.js:140:37
+   2492  100.0%            LazyCompile: ~File.flush C:\Users\pfesz\Desktop\100mil\lib\file.js:125:33
+   2172    3.9%      LazyCompile: *encodeCodePoint C:\Users\pfesz\Desktop\100mil\node_modules\wtf-8\wtf-8.js:73:26
+   2172  100.0%        LazyCompile: *wtf8encode C:\Users\pfesz\Desktop\100mil\node_modules\wtf-8\wtf-8.js:94:21
+   2172  100.0%          LazyCompile: *exports.encodePacket C:\Users\pfesz\Desktop\100mil\node_modules\engine.io-parser\lib\index.js:52:33
+   2102   96.8%            LazyCompile: ~encodeOne C:\Users\pfesz\Desktop\100mil\node_modules\engine.io-parser\lib\index.js:228:21
+     55    2.5%            LazyCompile: *encodeOne C:\Users\pfesz\Desktop\100mil\node_modules\engine.io-parser\lib\index.js:228:21
+   2112    3.8%      LazyCompile: *Socket._writeGeneric net.js:661:42
+   2112  100.0%        LazyCompile: *Socket._write net.js:729:35
+   2108   99.8%          LazyCompile: *writeOrBuffer _stream_writable.js:292:23
+   2108  100.0%            LazyCompile: *Writable.write _stream_writable.js:221:36
+   2082    3.8%      LazyCompile: *Client.packet C:\Users\pfesz\Desktop\100mil\node_modules\socket.io\lib\client.js:141:35
+   2082  100.0%        LazyCompile: *Socket.packet C:\Users\pfesz\Desktop\100mil\node_modules\socket.io\lib\socket.js:219:35
+   2082  100.0%          LazyCompile: ~<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\socket.io-adapter\index.js:121:39
+   2075   99.7%            LazyCompile: *Adapter.broadcast C:\Users\pfesz\Desktop\100mil\node_modules\socket.io-adapter\index.js:107:39
+   2014    3.7%      LazyCompile: ~writeToEngine C:\Users\pfesz\Desktop\100mil\node_modules\socket.io\lib\client.js:146:25
+   2012   99.9%        LazyCompile: *Client.packet C:\Users\pfesz\Desktop\100mil\node_modules\socket.io\lib\client.js:141:35
+   2012  100.0%          LazyCompile: *Socket.packet C:\Users\pfesz\Desktop\100mil\node_modules\socket.io\lib\socket.js:219:35
+   2012  100.0%            LazyCompile: ~<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\socket.io-adapter\index.js:121:39
+   1752    3.2%      LazyCompile: *nextTick internal/process/next_tick.js:140:20
+   1722   98.3%        LazyCompile: *onwrite _stream_writable.js:353:17
+   1722  100.0%          LazyCompile: *WritableState.onwrite _stream_writable.js:89:26
+   1715   99.6%            LazyCompile: *Socket._writeGeneric net.js:661:42
+   1434    2.6%      LazyCompile: *WebSocket.send C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\transports\websocket.js:89:37
+   1434  100.0%        LazyCompile: *Socket.flush C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\socket.js:409:35
+    999   69.7%          LazyCompile: *Socket.sendPacket C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\socket.js:373:40
+    998   99.9%            LazyCompile: *Socket.send.Socket.write C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\socket.js:359:35
+    435   30.3%          LazyCompile: *emit events.js:136:44
+    423   97.2%            LazyCompile: *onEnd C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\transports\websocket.js:117:18
+     12    2.8%            LazyCompile: *afterWrite _stream_writable.js:381:20
+   5183    7.3%    LazyCompile: *createWriteReq net.js:733:24
+   5171   99.8%      LazyCompile: *Socket._writeGeneric net.js:661:42
+   5171  100.0%        LazyCompile: *Socket._write net.js:729:35
+   5171  100.0%          LazyCompile: *writeOrBuffer _stream_writable.js:292:23
+   5170  100.0%            LazyCompile: *Writable.write _stream_writable.js:221:36
+   3575    5.0%    LazyCompile: *Buffer.write buffer.js:714:34
+   3574  100.0%      LazyCompile: *fromString buffer.js:186:20
+   3574  100.0%        LazyCompile: *Buffer buffer.js:70:16
+   3574  100.0%          LazyCompile: Sender.frameAndSend C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\Sender.js:144:41
+   3574  100.0%            LazyCompile: ~<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\Sender.js:117:37
+   1651    2.3%    LazyCompile: *byteLength buffer.js:343:20
+    562   34.0%      LazyCompile: *fromString buffer.js:186:20
+    562  100.0%        LazyCompile: *Buffer buffer.js:70:16
+    562  100.0%          LazyCompile: Sender.frameAndSend C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\Sender.js:144:41
+    562  100.0%            LazyCompile: ~<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\ws\lib\Sender.js:117:37
+    457   27.7%      Handler: disconnect {1}
+    457  100.0%        LazyCompile: *exports.encodePacket C:\Users\pfesz\Desktop\100mil\node_modules\engine.io-parser\lib\index.js:52:33
+    457  100.0%          LazyCompile: *WebSocket.send C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\transports\websocket.js:89:37
+    457  100.0%            LazyCompile: *Socket.flush C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\socket.js:409:35
+    265   16.1%      LazyCompile: *send C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\transports\websocket.js:97:17
+    265  100.0%        LazyCompile: *exports.encodePacket C:\Users\pfesz\Desktop\100mil\node_modules\engine.io-parser\lib\index.js:52:33
+    265  100.0%          LazyCompile: *WebSocket.send C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\transports\websocket.js:89:37
+    265  100.0%            LazyCompile: *Socket.flush C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\socket.js:409:35
+    125    7.6%      LazyCompile: *exports.encodePacket C:\Users\pfesz\Desktop\100mil\node_modules\engine.io-parser\lib\index.js:52:33
+    125  100.0%        LazyCompile: *WebSocket.send C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\transports\websocket.js:89:37
+    125  100.0%          LazyCompile: *Socket.flush C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\socket.js:409:35
+     78   62.4%            LazyCompile: *emit events.js:136:44
+     47   37.6%            LazyCompile: *Socket.sendPacket C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\socket.js:373:40
+     70    4.2%      LazyCompile: ~send C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\transports\websocket.js:97:17
+     70  100.0%        LazyCompile: *exports.encodePacket C:\Users\pfesz\Desktop\100mil\node_modules\engine.io-parser\lib\index.js:52:33
+     70  100.0%          LazyCompile: *WebSocket.send C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\transports\websocket.js:89:37
+     70  100.0%            LazyCompile: *Socket.flush C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\socket.js:409:35
+     60    3.6%      Handler: read {1}
+     60  100.0%        LazyCompile: *exports.encodePacket C:\Users\pfesz\Desktop\100mil\node_modules\engine.io-parser\lib\index.js:52:33
+     60  100.0%          LazyCompile: *WebSocket.send C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\transports\websocket.js:89:37
+     60  100.0%            LazyCompile: *Socket.flush C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\socket.js:409:35
+     45    2.7%      LazyCompile: ~respond C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\transports\polling.js:319:20
+     39   86.7%        Handler: dispatch
+     39  100.0%          LazyCompile: *Polling.write C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\transports\polling.js:263:36
+     39  100.0%            LazyCompile: ~<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\transports\polling.js:247:63
+      3    6.7%        LazyCompile: ~Polling.doWrite C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\transports\polling.js:277:38
+      3  100.0%          LazyCompile: *Polling.write C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\transports\polling.js:263:36
+      3  100.0%            LazyCompile: ~<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\transports\polling.js:247:63
+      3    6.7%        LazyCompile: *Polling.write C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\transports\polling.js:263:36
+      3  100.0%          LazyCompile: ~<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\transports\polling.js:247:63
+      3  100.0%            LazyCompile: ~<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\engine.io-parser\lib\index.js:234:35
+     41    2.5%      Handler: flags {2}
+     41  100.0%        LazyCompile: *Polling.write C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\transports\polling.js:263:36
+     41  100.0%          LazyCompile: ~<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\engine.io\lib\transports\polling.js:247:63
+     41  100.0%            LazyCompile: ~<anonymous> C:\Users\pfesz\Desktop\100mil\node_modules\engine.io-parser\lib\index.js:234:35
+
+  16234    4.8%  UNKNOWN
+
+  15914    4.7%  LazyCompile: *encode C:\Users\pfesz\Desktop\100mil\lib\encoding.js:30:19
+  10107   63.5%    LazyCompile: *File.writeFile C:\Users\pfesz\Desktop\100mil\lib\file.js:140:37
+  10107  100.0%      LazyCompile: *File.flush C:\Users\pfesz\Desktop\100mil\lib\file.js:125:33
+  10107  100.0%        LazyCompile: *toilet.flushAll C:\Users\pfesz\Desktop\100mil\lib\toilet.js:16:28
+   8333   82.4%          LazyCompile: ~file.flush C:\Users\pfesz\Desktop\100mil\lib\toilet.js:27:13
+   8333  100.0%            LazyCompile: ~fs.write C:\Users\pfesz\Desktop\100mil\lib\file.js:150:49
+   1289   12.8%          LazyCompile: *File.press C:\Users\pfesz\Desktop\100mil\lib\file.js:99:33
+   1289  100.0%            LazyCompile: ~getFile.file C:\Users\pfesz\Desktop\100mil\lib\db.js:23:28
+    403    4.0%          LazyCompile: ~getFile.file C:\Users\pfesz\Desktop\100mil\lib\db.js:23:28
+    403  100.0%            LazyCompile: *db.getFile C:\Users\pfesz\Desktop\100mil\lib\db.js:29:23
+   5807   36.5%    LazyCompile: ~File.writeFile C:\Users\pfesz\Desktop\100mil\lib\file.js:140:37
+   5807  100.0%      LazyCompile: *File.flush C:\Users\pfesz\Desktop\100mil\lib\file.js:125:33
+   5807  100.0%        LazyCompile: *toilet.flushAll C:\Users\pfesz\Desktop\100mil\lib\toilet.js:16:28
+   5399   93.0%          LazyCompile: ~file.flush C:\Users\pfesz\Desktop\100mil\lib\toilet.js:27:13
+   5399  100.0%            LazyCompile: ~fs.write C:\Users\pfesz\Desktop\100mil\lib\file.js:150:49
+    408    7.0%          LazyCompile: *File.press C:\Users\pfesz\Desktop\100mil\lib\file.js:99:33
+    408  100.0%            LazyCompile: ~getFile.file C:\Users\pfesz\Desktop\100mil\lib\db.js:23:28
+

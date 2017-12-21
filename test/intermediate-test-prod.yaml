@@ -1,10 +1,12 @@
 config:
-    target: "http://localhost:3000"
+    target: "http://ctrl-alt-create.net"
     phases:
-        - duration: 80 
-          arrivalRate: 5
         - duration: 100
           arrivalRate: 3
+        - duration: 100
+          arrivalRate: 2
+        - duration: 100
+          arrivalRate: 1
     processor: "./functions.js"
 
 scenarios:
@@ -30,7 +32,7 @@ scenarios:
                      - 0
                    i: "{{ $randomNumber(0, 399) }}"
             - think: 1
-          count: 100
+          count: 200
 
     - name: "User that stays in chunk -1 -1 and clicks often"
       weight: 1
@@ -54,7 +56,7 @@ scenarios:
                      - -1
                    i: "{{ $randomNumber(0, 399) }}"
             - think: 1
-          count: 100
+          count: 200
 
     - name: "User that stays in chunk -1 0 and clicks often"
       weight: 1
@@ -78,7 +80,7 @@ scenarios:
                      - 0
                    i: "{{ $randomNumber(0, 399) }}"
             - think: 1
-          count: 100
+          count: 200
 
     - name: "User that stays in chunk 0 -1 and clicks often"
       weight: 1
@@ -102,7 +104,7 @@ scenarios:
                      - -1
                    i: "{{ $randomNumber(0, 399) }}"
             - think: 1
-          count: 100
+          count: 200
 
     - name: "User that flies across the map, making many chunk load requests"
       weight: 2
@@ -116,8 +118,8 @@ scenarios:
                    chunk:
                      - "{{ chunkX }}"
                      - "{{ chunkY }}"
-            - think: 3
-          count: 33
+            - think: 4
+          count: 50
 
     - name: "User that just watches the panel as the lights blink"
       weight: 1
@@ -131,4 +133,4 @@ scenarios:
             data:
                 - "{{ chunkX }}"
                 - "{{ chunkY }}"
-        - think: 100
+        - think: 200

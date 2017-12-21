@@ -273,9 +273,14 @@
 	})
 
 	socket.on('data', function (res) {
-		//if ()
 		const panel = view.getPanel(res.chunk)
 		if (panel !== null) {
+			if (res.data === null) {
+				for (const button of panel.buttons) {
+					button.setColor(0)
+				}
+				return
+			}
 			const buttons = res.data.split('')
 			for (var i in buttons) {
 				panel.buttons[i].setColor(buttons[i]);
