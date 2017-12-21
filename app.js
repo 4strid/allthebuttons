@@ -42,7 +42,8 @@ io.on('connection', function(sock) {
 	//io.to(socket.id).emit('load', database);
 	socket.socket.on('request', function (chunk) {
 		if (socket.loadOpsIn1s > 20) {
-			return socket.disconnect()
+			//return socket.disconnect()
+			return console.log('load overload!')
 		}
 		db.load(chunk, function (data) {
 			if (data !== null) {
@@ -56,9 +57,12 @@ io.on('connection', function(sock) {
 	})
 	socket.socket.on('press', function (press) {
 		if (socket.opsIn1s > 10) {
-			return socket.disconnect()
+			//return socket.disconnect()
+			console.log('overload!')
+			return
 		}
 		if (socket.opsIn1m > 120) {
+			console.log('overload! (2)')
 			return
 		}
 		db.press(press, function (err) {

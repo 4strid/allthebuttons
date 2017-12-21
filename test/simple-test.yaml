@@ -1,0 +1,30 @@
+config:
+    target: "http://localhost:3000"
+    phases:
+        - duration: 30
+          arrivalRate: 2
+        - duration: 100
+          arrivalRate: 1
+
+scenarios:
+    - name: "Random click user"
+      engine: "socketio"
+      flow:
+        - get:
+            url: "/"
+        - emit:
+            channel: "request"
+            data:
+                - 0
+                - 0
+        - think: 5
+        - loop:
+            - emit:
+                channel: "press"
+                data: 
+                   chunk:
+                     - 0
+                     - 0
+                   i: "{{ $randomNumber(0, 399) }}"
+            - think: 1
+          count: 100

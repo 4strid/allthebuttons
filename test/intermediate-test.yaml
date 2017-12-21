@@ -1,0 +1,136 @@
+config:
+    target: "http://localhost:3000"
+    phases:
+        - duration: 100
+          arrivalRate: 3
+        - duration: 100
+          arrivalRate: 2
+        - duration: 100
+          arrivalRate: 1
+    processor: "./functions.js"
+
+scenarios:
+    - name: "User that stays in chunk 0 0 and clicks often"
+      weight: 1
+      engine: "socketio"
+      flow:
+        - function: "randomChunk"
+        - get:
+            url: "/"
+        - emit:
+            channel: "request"
+            data:
+                - 0
+                - 0
+        - think: 5
+        - loop:
+            - emit:
+                channel: "press"
+                data: 
+                   chunk:
+                     - 0
+                     - 0
+                   i: "{{ $randomNumber(0, 399) }}"
+            - think: 1
+          count: 200
+
+    - name: "User that stays in chunk -1 -1 and clicks often"
+      weight: 1
+      engine: "socketio"
+      flow:
+        - function: "randomChunk"
+        - get:
+            url: "/"
+        - emit:
+            channel: "request"
+            data:
+                - -1
+                - -1
+        - think: 5
+        - loop:
+            - emit:
+                channel: "press"
+                data: 
+                   chunk:
+                     - -1
+                     - -1
+                   i: "{{ $randomNumber(0, 399) }}"
+            - think: 1
+          count: 200
+
+    - name: "User that stays in chunk -1 0 and clicks often"
+      weight: 1
+      engine: "socketio"
+      flow:
+        - function: "randomChunk"
+        - get:
+            url: "/"
+        - emit:
+            channel: "request"
+            data:
+                - -1
+                - 0
+        - think: 5
+        - loop:
+            - emit:
+                channel: "press"
+                data: 
+                   chunk:
+                     - -1
+                     - 0
+                   i: "{{ $randomNumber(0, 399) }}"
+            - think: 1
+          count: 200
+
+    - name: "User that stays in chunk 0 -1 and clicks often"
+      weight: 1
+      engine: "socketio"
+      flow:
+        - function: "randomChunk"
+        - get:
+            url: "/"
+        - emit:
+            channel: "request"
+            data:
+                - 0
+                - -1
+        - think: 5
+        - loop:
+            - emit:
+                channel: "press"
+                data: 
+                   chunk:
+                     - 0
+                     - -1
+                   i: "{{ $randomNumber(0, 399) }}"
+            - think: 1
+          count: 200
+
+    - name: "User that flies across the map, making many chunk load requests"
+      weight: 2
+      engine: "socketio"
+      flow:
+        - loop:
+            - function: "randomChunk"
+            - emit:
+                channel: "request"
+                data: 
+                   chunk:
+                     - "{{ chunkX }}"
+                     - "{{ chunkY }}"
+            - think: 4
+          count: 50
+
+    - name: "User that just watches the panel as the lights blink"
+      weight: 1
+      engine: "socketio"
+      flow:
+        - function: "randomChunk"
+        - get:
+            url: "/"
+        - emit:
+            channel: "request"
+            data:
+                - "{{ chunkX }}"
+                - "{{ chunkY }}"
+        - think: 200
