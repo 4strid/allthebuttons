@@ -47,7 +47,7 @@
 			this.pressed = true;
 			this.timeout = setTimeout(() => {
 				this.longpress();
-				socket.emit('press', {chunk: this.parent.chunk, i: this.i, long:true});
+				socket.emit('press', this.buffer(true));
 				this.pressed = false;
 			}, 400);
 		},
@@ -55,9 +55,34 @@
 			if (this.pressed) {
 				clearTimeout(this.timeout);
 				this.press();
-				socket.emit('press', {chunk: this.parent.chunk, i: this.i});
+				socket.emit('press', this.buffer(false));
 				this.pressed = false;
 			}
+		},
+		buffer: function (long) {
+			let longBit = 0
+			if (long) {
+				longBit = 1
+			}
+			const buffer = new ArrayBuffer(16 + 2)
+			const chunk = new Float64Array(buffer, 0, 2)
+			const bytes = new Uint8Array(buffer, 16, 2)
+
+			chunk[X] = this.parent.chunk[X]
+			chunk[Y] = this.parent.chunk[Y]
+
+			// hi bits of address
+			const addr1 = this.i >> 8
+			// lo bits of address
+			const addr2 = this.i & 255
+			// hi bits with long bit stuffed into the topmost bit
+			const byte1 = addr1 | (longBit << 7)
+			// lo bits
+			const byte2 = addr2
+			// store hi bits
+			bytes[0] = byte1
+			// store lo bits
+			bytes[1] = byte2
 		}
 	};
 
@@ -272,27 +297,42 @@
 		view.scroll(scrollX, scrollY, innerWidth, innerHeight)
 	})
 
-	socket.on('data', function (res) {
-		const panel = view.getPanel(res.chunk)
+	socket.on('data', function (buffer) {
+		const chunk = new Float64Array(buffer, 0, 2)
+		const buttonSize = buffer.byteLength - 16
+		const buttons = new Uint8Array(buffer, 16, buttonSize)
+
+		const panel = view.getPanel(chunk)
 		if (panel !== null) {
-			if (res.data === null) {
-				for (const button of panel.buttons) {
+			// if i only send 0 the chunk is empty
+			if (buffer.byteLength === 1) {
+				return panel.buttons.forEach(function (button) {
 					button.setColor(0)
-				}
-				return
+				})
 			}
-			const buttons = res.data.split('')
-			for (var i in buttons) {
-				panel.buttons[i].setColor(buttons[i]);
+			// unpack the bits from the bytes
+			for (let i = 0; i < buttonSize; i++) {
+				const byte = buttons[i]
+				for (let j = 0; j < 4; j++) {
+					// right shift to align the position of the button in the byte to the lowest 2 bits
+					// & (1 + 2) masks all but the lowest two bits, yielding a two bit number value
+					const bits = (byte >> (j * 2)) & (1 + 2)
+					panel.buttons[i * 4 + j].setColor(bits)
+				}
 			}
 		}
 	});
 
-	socket.on('press', function (press) {
+	socket.on('press', function (buffer) {
+		const chunk = new Float64Array(buffer, 0, 2)
+		const rest = new Uint16Array(buffer, 16, 1)
+		// 32767 is 0111 1111 1111 1111
+		const i = rest & 32767
+		const long = rest[0] >> 15
 		const panel = view.getPanel(press.chunk)
 		if (panel !== null) {
-			var button = panel.buttons[press.i];
-			if (press.long) {
+			var button = panel.buttons[i];
+			if (long) {
 				return button.longpress()
 			}
 			button.press()
