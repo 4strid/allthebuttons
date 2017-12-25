@@ -3,6 +3,9 @@
 	const CENTER = 800000
 	const PANEL = 1300
 
+	const X = 0
+	const Y = 1
+
 	if ('scrollRestoration' in history) {
 		history.scrollRestoration = 'manual'
 	}
@@ -47,7 +50,8 @@
 			this.pressed = true;
 			this.timeout = setTimeout(() => {
 				this.longpress();
-				socket.emit('press', this.buffer(true));
+				const buffer = serializePress(this.parent.chunk, this.i, true)
+				socket.emit('press', buffer);
 				this.pressed = false;
 			}, 400);
 		},
@@ -55,35 +59,11 @@
 			if (this.pressed) {
 				clearTimeout(this.timeout);
 				this.press();
-				socket.emit('press', this.buffer(false));
+				const buffer = serializePress(this.parent.chunk, this.i, false)
+				socket.emit('press', buffer);
 				this.pressed = false;
 			}
 		},
-		buffer: function (long) {
-			let longBit = 0
-			if (long) {
-				longBit = 1
-			}
-			const buffer = new ArrayBuffer(16 + 2)
-			const chunk = new Float64Array(buffer, 0, 2)
-			const bytes = new Uint8Array(buffer, 16, 2)
-
-			chunk[X] = this.parent.chunk[X]
-			chunk[Y] = this.parent.chunk[Y]
-
-			// hi bits of address
-			const addr1 = this.i >> 8
-			// lo bits of address
-			const addr2 = this.i & 255
-			// hi bits with long bit stuffed into the topmost bit
-			const byte1 = addr1 | (longBit << 7)
-			// lo bits
-			const byte2 = addr2
-			// store hi bits
-			bytes[0] = byte1
-			// store lo bits
-			bytes[1] = byte2
-		}
 	};
 
 	// 20x20
@@ -93,9 +73,16 @@
 		this.buttons = [];
 		this.el = document.createElement('div');
 
-		this.update(chunk, x, y)
+		this.chunk = chunk
 
-		socket.emit('request', chunk)
+		this.x = CENTER + x * PANEL + 0.5
+		this.y = CENTER + y * PANEL + 0.5 
+
+		this.el.style.left = this.x + 'px'
+		this.el.style.top = this.y + 'px'
+
+		this.emitRequest()
+
 		for (var i = 0; i < 400; i++) {
 			var button = new Button(this, i);
 			this.buttons[i] = button;
@@ -137,7 +124,7 @@
 		return this.buttons[i]
 	}
 
-	Panel.prototype.update = function (chunk, x, y) {
+	Panel.prototype.recycle = function (chunk, x, y) {
 		this.chunk = chunk
 
 		this.x = CENTER + x * PANEL + 0.5
@@ -145,6 +132,18 @@
 
 		this.el.style.left = this.x + 'px'
 		this.el.style.top = this.y + 'px'
+
+		this.emitRequest()
+
+		return this
+	}
+
+	Panel.prototype.emitRequest = function () {
+		const buffer = new ArrayBuffer(16)
+		const data = new DataView(buffer)
+		data.setFloat64(0, this.chunk[X], true)
+		data.setFloat64(8, this.chunk[Y], true)
+		socket.emit('request', buffer)
 	}
 
 	Panel.prototype.hide = function () {
@@ -163,9 +162,6 @@
 	}
 
 	function View (xpos, ypos) {
-		const X = 0
-		const Y = 1
-
 		this.position = [xpos, ypos]
 		this.origin = [xpos, ypos]
 		this.live = {}
@@ -186,13 +182,14 @@
 				if (x[chunk[Y]]) {
 					return
 				}
+				const pageX = chunk[X] - this.origin[X]
+				const pageY = chunk[Y] - this.origin[Y]
 				if (this.pool.length > 0) {
 					const panel = this.pool.pop()
-					panel.update(chunk, chunk[X] - this.origin[X], chunk[Y] - this.origin[Y])
-					socket.emit('request', chunk)
-					return x[chunk[Y]] = panel
+					x[chunk[Y]] = panel.recycle(chunk, pageX, pageY)
+					return
 				}
-				x[chunk[Y]] = new Panel(chunk, chunk[X] - this.origin[X], chunk[Y] - this.origin[Y])
+				x[chunk[Y]] = new Panel(chunk, pageX, pageY)
 			})
 		}
 		// removes all chunks not in savedChunks
@@ -298,20 +295,20 @@
 	})
 
 	socket.on('data', function (buffer) {
-		const chunk = new Float64Array(buffer, 0, 2)
-		const buttonSize = buffer.byteLength - 16
-		const buttons = new Uint8Array(buffer, 16, buttonSize)
-
+		const chunk = getChunk(buffer)
 		const panel = view.getPanel(chunk)
 		if (panel !== null) {
-			// if i only send 0 the chunk is empty
-			if (buffer.byteLength === 1) {
+			if (buffer.byteLength === 16) {
 				return panel.buttons.forEach(function (button) {
 					button.setColor(0)
 				})
 			}
+
+			const chunk = getChunk(buffer)
+			const buttons = new Uint8Array(buffer, 16, 100)
+
 			// unpack the bits from the bytes
-			for (let i = 0; i < buttonSize; i++) {
+			for (let i = 0; i < 100; i++) {
 				const byte = buttons[i]
 				for (let j = 0; j < 4; j++) {
 					// right shift to align the position of the button in the byte to the lowest 2 bits
@@ -324,12 +321,13 @@
 	});
 
 	socket.on('press', function (buffer) {
-		const chunk = new Float64Array(buffer, 0, 2)
-		const rest = new Uint16Array(buffer, 16, 1)
+		const data = new DataView(buffer)
+		const chunk = getChunk(buffer)
+		const rest = data.getUint16(16, true)
 		// 32767 is 0111 1111 1111 1111
 		const i = rest & 32767
-		const long = rest[0] >> 15
-		const panel = view.getPanel(press.chunk)
+		const long = rest >> 15
+		const panel = view.getPanel(chunk)
 		if (panel !== null) {
 			var button = panel.buttons[i];
 			if (long) {
@@ -339,5 +337,26 @@
 		}
 	});
 
+	function getChunk (buffer) {
+		const data = new DataView(buffer)
+		return [data.getFloat64(0, true), data.getFloat64(8, true)]
+	}
 
+	function serializePress (chunk, i, long) {
+		let longBit = 0
+		if (long) {
+			longBit = 1
+		}
+		const buffer = new ArrayBuffer(16 + 2)
+		const data = new DataView(buffer)
+
+		data.setFloat64(0, chunk[X], true)
+		data.setFloat64(8, chunk[Y], true)
+
+		const bytes = i | (longBit << 15)
+		console.log(bytes.toString(2))
+		data.setUint16(16, bytes, true)
+
+		return buffer
+	}
 })();

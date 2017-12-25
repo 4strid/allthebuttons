@@ -41,14 +41,13 @@ io.on('connection', function(sock) {
 	sockets.set(socket)
 	//io.to(socket.id).emit('load', database);
 	socket.socket.on('request', function (chunk) {
-		console.log(chunk)
 		if (socket.loadOpsIn1s > 20) {
 			//return socket.disconnect()
 			return console.log('load overload!')
 		}
-		//db.load(chunk, function (buffer) {
-			//socket.socket.emit(buffer)
-		//})
+		db.load(chunk, function (buffer) {
+			socket.socket.emit('data', buffer)
+		})
 		socket.loadOpsIn1s++
 	})
 	socket.socket.on('press', function (press) {

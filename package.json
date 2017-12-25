@@ -12,6 +12,7 @@
     "connect-static": "^1.5.2",
     "diet": "^0.16.0",
     "diet-connect": "^1.2.0",
+    "express": "^4.16.2",
     "socket.io": "^1.4.8"
   }
 }
