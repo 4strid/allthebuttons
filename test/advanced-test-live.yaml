@@ -1,0 +1,77 @@
+config:
+    target: "http://allthebuttons.io"
+    phases:
+        - duration: 100
+          arrivalRate: 5
+        - duration: 100
+          arrivalRate: 5
+        #- duration: 100
+          #arrivalRate: 3
+    processor: "./functions.js"
+    variables:
+        closeby:
+            - "0:0"
+            - "0:5"
+            - "0:10"
+            - "0:15"
+            - "0:20"
+            - "5:0"
+            - "5:5"
+            - "5:10"
+            - "5:15"
+            - "5:20"
+            - "10:0"
+            - "10:5"
+            - "10:10"
+            - "10:15"
+            - "10:20"
+            - "15:0"
+            - "15:5"
+            - "15:10"
+            - "15:15"
+            - "15:20"
+            - "20:0"
+            - "20:5"
+            - "20:10"
+            - "20:15"
+            - "20:20"
+
+scenarios:
+    - name: "User that stays close by and clicks often"
+      weight: 3
+      engine: "socketio"
+      flow:
+          - get:
+              url: "/"
+          - emit:
+              channel: "r"
+              data: "{{ closeby }}"
+          - think: 1
+          - loop:
+               - emit:
+                   channel: "p"
+                   data:
+                      chunk: "{{ closeby }}"
+                      i: "{{ $randomNumber(0, 399) }}"
+               - think: 1
+            count: 100
+
+    - name: "Flyer: user that flies across the map loading many chunks"
+      weight: 1
+      engine: "socketio"
+      flow:
+          - get:
+              url: "/"
+          - loop:
+              - function: "randomChunk"
+              - emit:
+                  channel: "r"
+                  data: "{{ chunk }}"
+              - think: 1
+              - emit:
+                  channel: "p"
+                  data:
+                     chunk: "{{ chunk }}"
+                     i: "{{ $randomNumber(0, 399) }}"
+              - think: 1
+            count: 50
