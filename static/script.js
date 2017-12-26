@@ -50,8 +50,7 @@
 			this.pressed = true;
 			this.timeout = setTimeout(() => {
 				this.longpress();
-				const buffer = serializePress(this.parent.chunk, this.i, true)
-				socket.emit('press', buffer);
+				socket.emit('p', {chunk: this.parent.chunk[X] + ':' + this.parent.chunk[Y], i: this.i, long: true});
 				this.pressed = false;
 			}, 400);
 		},
@@ -59,8 +58,7 @@
 			if (this.pressed) {
 				clearTimeout(this.timeout);
 				this.press();
-				const buffer = serializePress(this.parent.chunk, this.i, false)
-				socket.emit('press', buffer);
+				socket.emit('p', {chunk: this.parent.chunk[X] + ':' + this.parent.chunk[Y], i: this.i});
 				this.pressed = false;
 			}
 		},
@@ -139,11 +137,11 @@
 	}
 
 	Panel.prototype.emitRequest = function () {
-		const buffer = new ArrayBuffer(16)
-		const data = new DataView(buffer)
-		data.setFloat64(0, this.chunk[X], true)
-		data.setFloat64(8, this.chunk[Y], true)
-		socket.emit('request', buffer)
+		//const buffer = new ArrayBuffer(16)
+		//const data = new DataView(buffer)
+		//data.setFloat64(0, this.chunk[X], true)
+		//data.setFloat64(8, this.chunk[Y], true)
+		socket.emit('r', this.chunk[X] + ':' + this.chunk[Y])
 	}
 
 	Panel.prototype.hide = function () {
@@ -294,7 +292,7 @@
 		view.scroll(scrollX, scrollY, innerWidth, innerHeight)
 	})
 
-	socket.on('data', function (buffer) {
+	socket.on('d', function (buffer) {
 		const chunk = getChunk(buffer)
 		const panel = view.getPanel(chunk)
 		if (panel !== null) {
@@ -320,7 +318,7 @@
 		}
 	});
 
-	socket.on('press', function (buffer) {
+	socket.on('p', function (buffer) {
 		const data = new DataView(buffer)
 		const chunk = getChunk(buffer)
 		const rest = data.getUint16(16, true)

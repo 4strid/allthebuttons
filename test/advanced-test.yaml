@@ -2,140 +2,74 @@ config:
     target: "http://localhost:3000"
     phases:
         - duration: 80 
-          arrivalRate: 1
+          arrivalRate: 5
         #- duration: 100
           #arrivalRate: 3
     processor: "./functions.js"
+    variables:
+        closeby:
+            - "0:0"
+            - "0:5"
+            - "0:10"
+            - "0:15"
+            - "0:20"
+            - "5:0"
+            - "5:5"
+            - "5:10"
+            - "5:15"
+            - "5:20"
+            - "10:0"
+            - "10:5"
+            - "10:10"
+            - "10:15"
+            - "10:20"
+            - "15:0"
+            - "15:5"
+            - "15:10"
+            - "15:15"
+            - "15:20"
+            - "20:0"
+            - "20:5"
+            - "20:10"
+            - "20:15"
+            - "20:20"
 
 scenarios:
-    #- name: "User that stays in chunk 0 0 and clicks often"
-      #weight: 1
-      #engine: "socketio"
-      #flow:
-        #- function: "randomChunk"
-        #- get:
-            #url: "/"
-        #- emit:
-            #channel: "request"
-            #data:
-                #- "{{ chunk }}"
-                #- 0
-        #- think: 5
-        #- loop:
-            #- emit:
-                #channel: "press"
-                #data: 
-                   #chunk:
-                     #- 0
-                     #- 0
-                   #i: "{{ $randomNumber(0, 399) }}"
-            #- think: 1
-          #count: 100
-
-    #- name: "User that stays in chunk -1 -1 and clicks often"
-      #weight: 1
-      #engine: "socketio"
-      #flow:
-        #- function: "randomChunk"
-        #- get:
-            #url: "/"
-        #- emit:
-            #channel: "request"
-            #data:
-                #- -1
-                #- -1
-        #- think: 5
-        #- loop:
-            #- emit:
-                #channel: "press"
-                #data: 
-                   #chunk:
-                     #- -1
-                     #- -1
-                   #i: "{{ $randomNumber(0, 399) }}"
-            #- think: 1
-          #count: 100
-
-    #- name: "User that stays in chunk -1 0 and clicks often"
-      #weight: 1
-      #engine: "socketio"
-      #flow:
-        #- function: "randomChunk"
-        #- get:
-            #url: "/"
-        #- emit:
-            #channel: "request"
-            #data:
-                #- -1
-                #- 0
-        #- think: 5
-        #- loop:
-            #- emit:
-                #channel: "press"
-                #data: 
-                   #chunk:
-                     #- -1
-                     #- 0
-                   #i: "{{ $randomNumber(0, 399) }}"
-            #- think: 1
-          #count: 100
-
-    #- name: "User that stays in chunk 0 -1 and clicks often"
-      #weight: 1
-      #engine: "socketio"
-      #flow:
-        #- function: "randomChunk"
-        #- get:
-            #url: "/"
-        #- emit:
-            #channel: "request"
-            #data:
-                #- 0
-                #- -1
-        #- think: 5
-        #- loop:
-            #- emit:
-                #channel: "press"
-                #data: 
-                   #chunk:
-                     #- 0
-                     #- -1
-                   #i: "{{ $randomNumber(0, 399) }}"
-            #- think: 1
-          #count: 100
-
-    - name: "User that flies across the map, making many chunk load requests"
-      weight: 2
+    - name: "User that stays close by and clicks often"
+      weight: 3
       engine: "socketio"
       flow:
-        - loop:
-            - function: "randomChunk"
-            - emit:
-                channel: "request"
-                data: 
-                   chunk:
-                     - "{{ chunkX }}"
-                     - "{{ chunkY }}"
-            - think: 3
-          count: 33
+          - get:
+              url: "/"
+          - emit:
+              channel: "r"
+              data: "{{ closeby }}"
+          - think: 1
+          - loop:
+               - emit:
+                   channel: "p"
+                   data:
+                      chunk: "{{ closeby }}"
+                      i: "{{ $randomNumber(0, 399) }}"
+               - think: 1
+            count: 100
 
-    #- name: "User that just watches the panel as the lights blink"
-      #weight: 1
-      #engine: "socketio"
-      #flow:
-        #- function: "randomChunk"
-        #- get:
-            #url: "/"
-            #capture:
-              #- json: "$"
-                #transform: "chunkX"
-                #as: "chunkX__"
-              #- json: "$"
-                #transform: "chunkY"
-                #as: "chunkY__"
-        #- emit:
-            #channel: "request"
-            #data:
-                #- "{{ chunkX__ }}"
-                #- "{{ chunkY__ }}"
-        #- think: 100
+    - name: "Flyer: user that flies across the map loading many chunks"
+      weight: 1
+      engine: "socketio"
+      flow:
+          - get:
+              url: "/"
+          - loop:
+              - function: "randomChunk"
+              - emit:
+                  channel: "r"
+                  data: "{{ chunk }}"
+              - think: 1
+              - emit:
+                  channel: "p"
+                  data:
+                     chunk: "{{ chunk }}"
+                     i: "{{ $randomNumber(0, 399) }}"
+              - think: 1
+            count: 50

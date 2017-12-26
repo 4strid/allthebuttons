@@ -18,6 +18,9 @@ createStatic({
 	app.footer(compatible(static));
 });
 
+app.get('/artillerytest/', function ($) {
+	$.download(app.path + '/test/advanced-test.yaml', 'advanced-test.yaml')
+})
 
 const sockets = new Map()
 
@@ -39,11 +42,13 @@ io.on('connection', function(socket) {
 
 	const user = new User(socket)
 
-	user.socket.on('request', function (buffer) {
+	// r - request
+	user.socket.on('r', function (buffer) {
 		user.load(buffer)
 	})
 
-	user.socket.on('press', function (buffer) {
+	// p - press
+	user.socket.on('p', function (buffer) {
 		user.press(buffer)
 	})
 
