@@ -18,23 +18,6 @@ createStatic({
 	app.footer(compatible(static));
 });
 
-
-const sockets = new Map()
-
-setInterval(function () {
-	for (const socket of sockets) {
-		socket[0].resetLoads()
-		socket[0].resetSecond()
-	}
-}, 1000)
-
-setInterval(function () {
-	for (const socket of sockets) {
-		socket[0].resetMinute()
-	}
-}, 60000)
-
-/********** socket stuff ***************/
 io.on('connection', function(socket) {
 
 	const user = new User(socket)
