@@ -18,8 +18,11 @@ createStatic({
 	app.footer(compatible(static));
 });
 
-app.get('/artillerytest/', function ($) {
-	$.download(app.path + '/test/advanced-test.yaml', 'advanced-test.yaml')
+app.get('/artillery-ultra/', function ($) {
+	$.download(app.path + '/test/ultra-test-live.yaml', 'ultra-test-live.yaml')
+})
+app.get('/artillery-functions/', function ($) {
+	$.download(app.path + '/test/functions.js', 'functions.js')
 })
 
 const sockets = new Map()
