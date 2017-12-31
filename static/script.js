@@ -51,7 +51,7 @@
 			this.timeout = setTimeout(() => {
 				this.longpress();
 				const buffer = serializePress(this.parent.chunk, this.i, true)
-				socket.emit('press', buffer);
+				socket.emit('p', buffer);
 				this.pressed = false;
 			}, 400);
 		},
@@ -60,7 +60,7 @@
 				clearTimeout(this.timeout);
 				this.press();
 				const buffer = serializePress(this.parent.chunk, this.i, false)
-				socket.emit('press', buffer);
+				socket.emit('p', buffer);
 				this.pressed = false;
 			}
 		},
@@ -143,7 +143,7 @@
 		const data = new DataView(buffer)
 		data.setFloat64(0, this.chunk[X], true)
 		data.setFloat64(8, this.chunk[Y], true)
-		socket.emit('request', buffer)
+		socket.emit('r', buffer)
 	}
 
 	Panel.prototype.hide = function () {
@@ -294,7 +294,8 @@
 		view.scroll(scrollX, scrollY, innerWidth, innerHeight)
 	})
 
-	socket.on('data', function (buffer) {
+	// d - data
+	socket.on('d', function (buffer) {
 		const chunk = getChunk(buffer)
 		const panel = view.getPanel(chunk)
 		if (panel !== null) {
@@ -320,7 +321,8 @@
 		}
 	});
 
-	socket.on('press', function (buffer) {
+	// p - press
+	socket.on('p', function (buffer) {
 		const data = new DataView(buffer)
 		const chunk = getChunk(buffer)
 		const rest = data.getUint16(16, true)
