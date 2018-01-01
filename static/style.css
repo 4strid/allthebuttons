@@ -22,6 +22,23 @@ button:active {
 	border-width: 2px 2px 2px 2px;
 }
 
+aside {
+	width: 600px;
+	height: 400px;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background-color: #FFF;
+	position: fixed;
+	z-index: 50;
+}
+
+button.lost {
+	width: 200px;
+	height: 50px;
+}
 
 body {
 	/*width: 2700px;*/
@@ -41,7 +58,6 @@ button {
   width: 64px; 
   /*change border colour*/
 	border-style: solid;
-	/*border-color: #444 #333 #333 #333;*/
 	border-color: #555 #555 #999 #777;
 	border-width: 1px 2px 3px 2px;
 	-webkit-user-select: none;
