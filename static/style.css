@@ -9,6 +9,11 @@ html {
 	max-zoom: 0.8;
 }
 
+@font-face {
+	font-family: "pixel FJ 8pt";
+	src: url("pixelFJ8pt.ttf");
+}
+
 button::-moz-focus-inner {
   border: 0 !important;
 }
