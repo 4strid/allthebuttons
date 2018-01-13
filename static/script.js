@@ -361,4 +361,17 @@
 
 		return buffer
 	}
-})();
+
+	window.addEventListener('resize', resizeWindow)
+
+	function resizeWindow () {
+		const aside = document.getElementsByTagName('aside')[0]
+		if (window.innerWidth % 2 === 1) {
+			return aside.className = 'half-pixel-shift'
+		}
+		aside.className = ''
+	}
+
+	resizeWindow()
+
+})()

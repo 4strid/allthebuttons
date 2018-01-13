@@ -28,6 +28,8 @@ button:active {
 }
 
 aside {
+	font-family: "pixel FJ 8pt", sans-serif;
+	font-size: medium;
 	width: 600px;
 	height: 400px;
 	margin: auto;
@@ -36,13 +38,32 @@ aside {
 	right: 0;
 	left: 0;
 	background-color: #FFF;
+	color: #555;
 	position: fixed;
 	z-index: 50;
+	border: 1px solid #BBB;
+}
+
+aside.half-pixel-shift {
+	padding-left: 0.5px;
+}
+
+aside p {
+	text-align: center;
+}
+
+aside p.closebutton {
+	margin-left: 550px;
 }
 
 button.lost {
+	font-family: "pixel FJ 8pt", sans-serif;
+	font-size: medium;
+	color: #444;
 	width: 200px;
 	height: 50px;
+	display: block;
+	margin: 0 auto;
 }
 
 body {
