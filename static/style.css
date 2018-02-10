@@ -1,5 +1,6 @@
 html {
   box-sizing: border-box;
+  font-family: "pixel FJ 8pt", sans-serif;
 }
 *, *:before, *:after {
   box-sizing: inherit;
@@ -12,6 +13,18 @@ html {
 @font-face {
 	font-family: "pixel FJ 8pt";
 	src: url("pixelFJ8pt.ttf");
+}
+
+main {
+	position: relative;
+}
+
+div {
+	position: absolute;
+	width: 1300px;
+	/*animation: fadein 1s;*/
+	font-size: 0;
+	line-height: 0;
 }
 
 button::-moz-focus-inner {
@@ -27,11 +40,30 @@ button:active {
 	border-width: 2px 2px 2px 2px;
 }
 
+div.infobutton {
+	position: fixed;
+	width: 70px;
+	height: 70px;
+	border: 2px solid #BBB;
+	background-color: #FFF;
+	border-radius: 50%;
+	right: 20px;
+	bottom: 20px;
+	z-index: 50;
+	font-size: xx-large;
+	cursor: pointer;
+}
+
+div.infobutton p {
+	color: #BBB;
+	margin-top: 31px;
+	margin-left: 21px;
+}
+
 aside {
-	font-family: "pixel FJ 8pt", sans-serif;
 	font-size: medium;
 	width: 600px;
-	height: 400px;
+	height: 450px;
 	margin: auto;
 	top: 0;
 	bottom: 0;
@@ -42,6 +74,7 @@ aside {
 	position: fixed;
 	z-index: 50;
 	border: 1px solid #BBB;
+	display: none;
 }
 
 aside.half-pixel-shift {
@@ -53,7 +86,12 @@ aside p {
 }
 
 aside p.closebutton {
+	margin-top: 7px;
 	margin-left: 550px;
+}
+
+aside p.ctrlaltcreate {
+	font-size: small;
 }
 
 button.lost {
@@ -90,21 +128,31 @@ button {
 	vertical-align: top;
 }
 
-main {
-	position: relative;
+canvas {
+	margin-left: 100px;
 }
 
-div {
-	position: absolute;
-	width: 1300px;
-	/*animation: fadein 1s;*/
-	font-size: 0;
-	line-height: 0;
+table {
+	width: 400px;
+	margin-left: 100px;
+	margin-bottom: 10px;
+	text-align: center;
 }
 
-@keyframes fadein {
-	from { opacity: 0 }
-	to   { opacity: 1 }
+td {
+	width: 133px;
+}
+
+td.green {
+	color: #5f5;
+}
+
+td.blue {
+	color: #55f;
+}
+
+td.red {
+	color: #f55;
 }
 
 button.zero {

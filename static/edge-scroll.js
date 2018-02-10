@@ -12,33 +12,34 @@
 		this.innerWidth = window.innerWidth
 		this.innerHeight = window.innerHeight
 		this.handlers = []
+		this.deadzones = []
 		
 		this.clampedVelocity = function () {
-			const N = 6
-			const p = this.proximity / this.radius
+			var N = 6
+			var p = this.proximity / this.radius
 			return Math.pow(p * -1/2 + 1, N)
 		}
 
 		this.scrollTick = (function (time) {
-			const elapsed = this.lastTime ? time - this.lastTime : 0
+			var elapsed = this.lastTime ? time - this.lastTime : 0
 			this.lastTime = time
 			
 			if (this.scrolling === false) {
 				return this.lastTime = 0
 			}
 
-			const centerX = this.innerWidth / 2
-			const centerY = this.innerHeight / 2
+			var centerX = this.innerWidth / 2
+			var centerY = this.innerHeight / 2
 
-			const headingX = this.clientX - centerX
-			const headingY = this.clientY - centerY
+			var headingX = this.clientX - centerX
+			var headingY = this.clientY - centerY
 
-			const magnitude = Math.sqrt(Math.pow(headingX, 2) + Math.pow(headingY, 2))
-			const normalizedX = headingX / magnitude
-			const normalizedY = headingY / magnitude
+			var magnitude = Math.sqrt(Math.pow(headingX, 2) + Math.pow(headingY, 2))
+			var normalizedX = headingX / magnitude
+			var normalizedY = headingY / magnitude
 
-			const velocityX = normalizedX * this.speed * this.clampedVelocity()
-			const velocityY = normalizedY * this.speed * this.clampedVelocity()
+			var velocityX = normalizedX * this.speed * this.clampedVelocity()
+			var velocityY = normalizedY * this.speed * this.clampedVelocity()
 			window.scrollBy(Math.round(velocityX * elapsed / 1000), Math.round(velocityY * elapsed / 1000))
 			this.scrollX = window.scrollX
 			this.scrollY = window.scrollY
@@ -61,13 +62,13 @@
 		}
 
 		this.offScroll = function (handler) {
-			const i = this.handlers.indexOf(handler)
+			var i = this.handlers.indexOf(handler)
 			if (i > -1) {
 				this.handlers.splice(i, 1)
 			}
 		}
 
-		const scroll = this
+		var scroll = this
 
 		document.addEventListener('mouseout', function (evt) {
 			if (evt.relatedTarget === null) {
@@ -78,12 +79,15 @@
 		document.addEventListener('mousemove', function (evt) {
 			scroll.clientX = evt.clientX
 			scroll.clientY = evt.clientY
-			const px1 = evt.clientX - 0
-			const px2 = scroll.innerWidth - evt.clientX
-			const px3 = evt.clientY - 0
-			const px4 = scroll.innerHeight - evt.clientY
+			var px1 = evt.clientX - 0
+			var px2 = scroll.innerWidth - evt.clientX
+			var px3 = evt.clientY - 0
+			var px4 = scroll.innerHeight - evt.clientY
 			scroll.proximity = Math.min(px1, px2, px3, px4)
 			if (scroll.proximity < scroll.radius) {
+				if (scroll.dead) {
+					return
+				}
 				if (!scroll.scrolling) {
 					scroll.scrolling = true
 					window.requestAnimationFrame(scroll.scrollTick)
@@ -94,20 +98,54 @@
 		})
 
 		document.addEventListener('scroll', function (evt) {
-			let src
+			var src
 			if (scroll.scrolling) {
 				src = scroll
 			} else {
 				src = window
 			}
-			const scrollX = src.scrollX
-			const scrollY = src.scrollY
-			const innerWidth = src.innerWidth
-			const innerHeight = src.innerHeight
+			var scrollX = src.scrollX
+			var scrollY = src.scrollY
+			var innerWidth = src.innerWidth
+			var innerHeight = src.innerHeight
 			scroll.handlers.forEach(function (handler) {
 				handler(scrollX, scrollY, innerWidth, innerHeight)
 			})
 		})
+
+		this.addDeadzone = function (elem) {
+			function enterDeadzone () {
+				scroll.dead = true
+				scroll.scrolling = false
+			}
+
+			function leaveDeadzone () {
+				scroll.dead = false
+			}
+
+			scroll.deadzones.push({
+				elem: elem,
+				enter: enterDeadzone,
+				leave: leaveDeadzone
+			})
+
+			elem.addEventListener('mouseenter', enterDeadzone)
+			elem.addEventListener('mouseleave', leaveDeadzone)
+		}
+
+		this.removeDeadzone = function (elem) {
+			this.deadzones.forEach(function (deadzone) {
+				if (deadzone.elem === elem) {
+					elem.removeEventListener('mouseenter', deadzone.enter)
+					elem.removeEventListener('mouseleave', deadzone.leave)
+				}
+			})
+		}
 	}
-	window.EdgeScroll = EdgeScroll
+
+	if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+		module.exports = EdgeScroll
+	} else {
+		window.EdgeScroll = EdgeScroll
+	}
 })()

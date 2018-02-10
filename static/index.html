@@ -9,14 +9,28 @@
 </head>
 <body>
 	<main></main>
+	<div class="infobutton">
+		<p>?</p>
+	</div>
 	<aside>
-		<p class="closebutton">[X]</p>
+		<p class="closebutton"><a href="javascript:void(0)">[X]</a></p>
 		<p>It's an infinite panel of buttons!</p>
 		<p>You can press the buttons to change their colors.</p>
 		<p>The grid goes out forever in each direction.</p>
-		<p><a href="http://ctrl-alt-create.net/allthebuttons">How?</a></p>
 
-		<button class="lost">Help I'm lost</button>
+		<p>Statistics:</p>
+		<canvas width="400" height="100" class="graph"></canvas>
+		<table>
+			<tr>
+				<td class="green"></td>
+				<td class="blue"></td>
+				<td class="red">Red</td>
+			</tr>
+		</table>
+
+		<button class="lost" onclick="teleport(0, 0)">Help I'm lost</button>
+
+		<p class="ctrlaltcreate"><a href="http://ctrl-alt-create.net/allthebuttons">ctrl-alt-create.net</a></p>
 	</aside>
 	<script type="text/javascript" src="edge-scroll.js"></script>
 	<script type="text/javascript" src="script.js"></script>

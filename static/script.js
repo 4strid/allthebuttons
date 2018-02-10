@@ -6,16 +6,14 @@
 	const X = 0
 	const Y = 1
 
-	if ('scrollRestoration' in history) {
-		history.scrollRestoration = 'manual'
-	}
-
 	document.body.style.width = 2 * CENTER + 'px'
 	document.body.style.height = 2 * CENTER + 'px'
 
 	window.scroll(CENTER, CENTER)
 
 	const escroll = new EdgeScroll(100, 750)
+
+	escroll.addDeadzone(document.querySelector('.infobutton'))
 
 	var socket = io();
 
@@ -373,5 +371,51 @@
 	}
 
 	resizeWindow()
+
+	function renderGraph (statistics) {
+		let max = 'green'
+		if (statistics.green >= statistics.blue && statistics.green >= statistics.red) {
+			max = 'green'
+		} else if (statistics.blue >= statistics.green && statistics.blue >= statistics.red) {
+			max = 'blue'
+		} else if (statistics.red >= statistics.green && statistics.red >= statistics.blue) {
+			max = 'red'
+		}
+
+		const ctx = document.querySelector('canvas.graph').getContext('2d')
+
+
+		const greenHeight = statistics.green / statistics[max] * 85
+		ctx.fillStyle = '#5f5'
+		ctx.fillRect(30, 100 - greenHeight, 75, greenHeight)
+
+		const blueHeight = statistics.blue / statistics[max] * 85
+		ctx.fillStyle = '#55f'
+		ctx.fillRect(161, 100 - blueHeight, 75, blueHeight)
+
+		const redHeight = statistics.red / statistics[max] * 85
+		ctx.fillStyle = '#f55'
+		ctx.fillRect(292, 100 - redHeight, 75, redHeight)
+
+		ctx.strokeRect(0, 0, 400, 100)
+
+		document.querySelector('td.green').textContent = statistics.green.toFixed(1) + '%'
+		document.querySelector('td.blue').textContent = statistics.blue.toFixed(1) + '%'
+		document.querySelector('td.red').textContent = statistics.red.toFixed(1) + '%'
+	}
+
+	renderGraph({green: 17, red: 43, blue: 40})
+
+	function toggleInfoPanel () {
+		var aside = document.querySelector('aside')
+		if (aside.style.display === 'block') {
+			aside.style.display = 'none'
+			return
+		}
+		aside.style.display = 'block'
+	}
+
+	document.querySelector('.infobutton').addEventListener('click', toggleInfoPanel)
+	document.querySelector('.closebutton').addEventListener('click', toggleInfoPanel)
 
 })()
