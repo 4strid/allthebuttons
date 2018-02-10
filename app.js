@@ -1,12 +1,17 @@
 const       server = require('diet')
 const          app = server()
-app.listen('http://localhost:3000')
 
-const           io = require('socket.io')(app.server)
+const     socketio = require('socket.io')
 const createStatic = require('connect-static')
 const   compatible = require('diet-connect')
 
 const         User = require('./lib/user')
+const        stats = require('./lib/statistics')
+
+stats.load()
+
+app.listen('http://localhost:3000')
+const io = socketio(app.server)
 
 // static middleware
 createStatic({
@@ -33,9 +38,15 @@ io.on('connection', function(socket) {
 		user.press(buffer)
 	})
 
+	// s - statistics
+	user.socket.on('s', function () {
+		user.socket.emit('s', stats.buttons)
+	})
+
 	user.socket.on('disconnect', function () {
 		User.delete(user)
 	})
+
 });
 
 module.exports = app

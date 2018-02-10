@@ -354,7 +354,6 @@
 		data.setFloat64(8, chunk[Y], true)
 
 		const bytes = i | (longBit << 15)
-		console.log(bytes.toString(2))
 		data.setUint16(16, bytes, true)
 
 		return buffer
@@ -362,6 +361,7 @@
 
 	window.addEventListener('resize', resizeWindow)
 
+	// this is to keep my pixel font crispy
 	function resizeWindow () {
 		const aside = document.getElementsByTagName('aside')[0]
 		if (window.innerWidth % 2 === 1) {
@@ -371,6 +371,38 @@
 	}
 
 	resizeWindow()
+
+	let panelOpen = false
+
+	function toggleInfoPanel () {
+		var aside = document.querySelector('aside')
+		if (panelOpen) {
+			panelOpen = false
+			aside.style.display = 'none'
+			return
+		}
+		panelOpen = true
+		aside.style.display = 'block'
+		socket.emit('s')
+		repollStatistics()
+	}
+
+	function repollStatistics () {
+		console.log('repolling')
+		socket.emit('s')
+		if (panelOpen) {
+			setTimeout(repollStatistics, 3000)
+		}
+	}
+
+	document.querySelector('.infobutton').addEventListener('click', toggleInfoPanel)
+	document.querySelector('.closebutton').addEventListener('click', toggleInfoPanel)
+
+	// s - statistics
+	socket.on('s', function (stats) {
+		renderGraph(stats)
+	})
+
 
 	function renderGraph (statistics) {
 		let max = 'green'
@@ -384,6 +416,8 @@
 
 		const ctx = document.querySelector('canvas.graph').getContext('2d')
 
+		ctx.fillStyle = '#fff'
+		ctx.fillRect(0, 0, 400, 100)
 
 		const greenHeight = statistics.green / statistics[max] * 85
 		ctx.fillStyle = '#5f5'
@@ -399,23 +433,9 @@
 
 		ctx.strokeRect(0, 0, 400, 100)
 
-		document.querySelector('td.green').textContent = statistics.green.toFixed(1) + '%'
-		document.querySelector('td.blue').textContent = statistics.blue.toFixed(1) + '%'
-		document.querySelector('td.red').textContent = statistics.red.toFixed(1) + '%'
+		document.querySelector('td.green').textContent = statistics.green
+		document.querySelector('td.blue').textContent = statistics.blue
+		document.querySelector('td.red').textContent = statistics.red
 	}
-
-	renderGraph({green: 17, red: 43, blue: 40})
-
-	function toggleInfoPanel () {
-		var aside = document.querySelector('aside')
-		if (aside.style.display === 'block') {
-			aside.style.display = 'none'
-			return
-		}
-		aside.style.display = 'block'
-	}
-
-	document.querySelector('.infobutton').addEventListener('click', toggleInfoPanel)
-	document.querySelector('.closebutton').addEventListener('click', toggleInfoPanel)
 
 })()
