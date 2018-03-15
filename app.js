@@ -50,4 +50,8 @@ io.on('connection', function (socket) {
 
 })
 
+app.shutdown = function (done) {
+	io.close(done)
+}
+
 module.exports = app
