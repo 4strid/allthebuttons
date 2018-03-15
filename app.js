@@ -10,8 +10,16 @@ const        stats = require('./lib/statistics')
 
 stats.load()
 
-const hostname = process.env.ALLTHEBUTTONS_IO__HOSTNAME || 'http://localhost:3000'
-app.listen(hostname)
+const hostname = process.env.ALLTHEBUTTONS_IO__HOSTNAME
+
+if (hostname) {
+	app.listen(hostname, {
+		cert: app.path + '/allthebuttons.io.crt',
+		key: app.path + '/allthebuttons.io.key',
+	})
+} else {
+	app.listen('http://localhost:3000')
+}
 const io = socketio(app.server)
 
 // static middleware

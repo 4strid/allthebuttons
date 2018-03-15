@@ -58,3 +58,7 @@ typings/
 .env
 
 db/*
+
+# ssl certificate
+allthebuttons.io.key
+allthebuttons.io.crt
