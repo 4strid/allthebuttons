@@ -16,8 +16,6 @@ const hostname = process.env.ALLTHEBUTTONS_IO__HOSTNAME
 if (hostname) {
 	const cert = fs.readFileSync(app.path + '/allthebuttons.io.crt')
 	const key = fs.readFileSync(app.path + '/allthebuttons.io.key')
-	console.log (cert)
-	console.log (key)
 	app.listen(hostname, {
 		cert,
 		key,
