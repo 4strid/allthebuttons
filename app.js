@@ -50,8 +50,9 @@ io.on('connection', function (socket) {
 
 })
 
-app.shutdown = function (done) {
-	io.close(done)
-}
+// I think that just kills the server
+//app.shutdown = function (done) {
+	//io.close(done)
+//}
 
 module.exports = app
