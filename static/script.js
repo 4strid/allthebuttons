@@ -388,7 +388,6 @@
 	}
 
 	function repollStatistics () {
-		console.log('repolling')
 		socket.emit('s')
 		if (panelOpen) {
 			setTimeout(repollStatistics, 3000)
