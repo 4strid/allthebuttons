@@ -14,6 +14,8 @@ Basics
 ------
 A button's color is a 2 bit number, 00 for white, 01 for green, 10 for blue, and 11 for red. To switch between the two, a short press XORs the value by 1, and a long press XORs the value by 2. The net result is a 2 by 2 grid where short presses move you horizontally and long presses move you vertically.
 
+![button presses diagram](https://raw.githubusercontent.com/cutejs/allthebuttons.io/master/readme/button-presses.png)
+
 Bitwise shenanigans are at the heart of the project.
 
 Front End
@@ -34,7 +36,8 @@ The database handles files which contain 10,000 buttons each (100 by 100 buttons
 
 Optimizations
 -------------
-###Frontend
+
+### Frontend
 
 The frontend underwent three major optimizations to improve FPS, first I rewrote the edge scrolling module to cache `window.scrollX`, `window.scrollY`, `window.innerWidth`, and `window.innerHeight` to prevent layout thrashing as even just accessing those properties is incredibly expensive. This helped a little bit.
 
@@ -42,7 +45,7 @@ The View model determines which panels are actually visible on the screen, and s
 
 The real breakthrough was recycling panels. Rather than creating and destroying new Panels as the user scrolls around, panels that have gone out of view go into a pool, and are then refilled with new button data, and moved to the appropriate position.
 
-###Backend
+### Backend
 Originally, every button press was broadcast to every user regardless of where in the grid they were. The performance was very poor, with the CPU maxing out with only a few hundred simulated users. Though I dreaded having to determine which button presses to send to which user, thinking it would be massively complicated to implement, it turned out to be one of the simplest parts of the application.
 
 The trick was to think of determining which users to send presses to as an intersection problem: the press takes place in a single chunk (a point, or a 1 by 1 rectangle), and each user is in some rectangular region of the grid. We just determine which user-rectangles intersect the point of the press, and away we go: that's the users we must send the press to.
