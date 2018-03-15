@@ -10,7 +10,7 @@ const        stats = require('./lib/statistics')
 
 stats.load()
 
-const hostname = process.env.ALL_THE_BUTTONS_IO__HOSTNAME || 'http://localhost:3000'
+const hostname = process.env.ALLTHEBUTTONS_IO__HOSTNAME || 'http://localhost:3000'
 app.listen(hostname)
 const io = socketio(app.server)
 
