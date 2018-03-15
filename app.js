@@ -10,43 +10,44 @@ const        stats = require('./lib/statistics')
 
 stats.load()
 
-app.listen('http://localhost:3000')
+const hostname = process.env.ALL_THE_BUTTONS_IO__HOSTNAME || 'http://localhost:3000'
+app.listen(hostname)
 const io = socketio(app.server)
 
 // static middleware
 createStatic({
 	dir: __dirname + '/' + 'static',
-	aliases: [['/','/index.html']]
-}, function (err, static) {
+	aliases: [['/','/index.html']],
+}, function (err, staticMiddleware) {
 	if (err) {
 		throw err
 	}
-	app.footer(compatible(static));
-});
+	app.footer(compatible(staticMiddleware))
+})
 
-io.on('connection', function(socket) {
+io.on('connection', function (socket) {
 
 	const user = new User(socket)
 
 	// r - request
-	user.socket.on('r', function (buffer) {
+	socket.on('r', function (buffer) {
 		user.load(buffer)
 	})
 
 	// p - press
-	user.socket.on('p', function (buffer) {
+	socket.on('p', function (buffer) {
 		user.press(buffer)
 	})
 
 	// s - statistics
-	user.socket.on('s', function () {
-		user.socket.emit('s', stats.buttons)
+	socket.on('s', function () {
+		socket.emit('s', stats.buttons)
 	})
 
-	user.socket.on('disconnect', function () {
+	socket.on('disconnect', function () {
 		User.delete(user)
 	})
 
-});
+})
 
 module.exports = app
