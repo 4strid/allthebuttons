@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=320, initial-scale=0.7">
 	<title>Infinity buttons</title>
 	<link href="style.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+	<script type="text/javascript" src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
 </head>
 <body>
 	<main></main>
@@ -19,18 +19,18 @@
 		<p>The grid goes out forever in each direction.</p>
 
 		<p>Statistics:</p>
-		<canvas width="400" height="100" class="graph"></canvas>
+		<canvas width="700" height="300" class="graph"></canvas>
 		<table>
 			<tr>
 				<td class="green"></td>
 				<td class="blue"></td>
-				<td class="red">Red</td>
+				<td class="red"></td>
 			</tr>
 		</table>
 
 		<button class="lost" onclick="teleport(0, 0)">Help I'm lost</button>
 
-		<p class="ctrlaltcreate"><a href="http://ctrl-alt-create.net/allthebuttons">ctrl-alt-create.net</a></p>
+		<p class="ctrlaltcreate"><a href="https://github.com/4strid/allthebuttons">find me on github</a></p>
 	</aside>
 	<script type="text/javascript" src="edge-scroll.js"></script>
 	<script type="text/javascript" src="script.js"></script>

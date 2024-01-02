@@ -166,8 +166,8 @@
 		this.pool = []
 		this.surroundingChunks = function (position) {
 			var chunks = []
-			for (let x = position[X] - 1; x <= position[X] + 2; x++) {
-				for (let y = position[Y] - 1; y <= position[Y] + 1; y++) {
+			for (let x = position[X] - 1; x <= position[X] + 3; x++) {
+				for (let y = position[Y] - 1; y <= position[Y] + 3; y++) {
 					chunks.push([x, y])
 				}
 			}
@@ -207,8 +207,8 @@
 			function find (x, y) {
 				return savedChunks.filter(chunk => x == chunk[X] && y == chunk[Y] ).length
 			}
-		}
-		this.loadSurroundings = function () {
+    }
+    this.loadSurroundings = function () {
 			const chunks = this.surroundingChunks(this.position)
 			this.removeChunks(chunks)
 			this.addChunks(chunks)
@@ -416,21 +416,21 @@
 		const ctx = document.querySelector('canvas.graph').getContext('2d')
 
 		ctx.fillStyle = '#fff'
-		ctx.fillRect(0, 0, 400, 100)
+		ctx.fillRect(0, 0, 640, 300)
 
-		const greenHeight = statistics.green / statistics[max] * 85
+		const greenHeight = statistics.green / statistics[max] * 270
 		ctx.fillStyle = '#5f5'
-		ctx.fillRect(30, 100 - greenHeight, 75, greenHeight)
+		ctx.fillRect(60, 300 - greenHeight, 144, greenHeight)
 
-		const blueHeight = statistics.blue / statistics[max] * 85
+		const blueHeight = statistics.blue / statistics[max] * 270
 		ctx.fillStyle = '#55f'
-		ctx.fillRect(161, 100 - blueHeight, 75, blueHeight)
+		ctx.fillRect(266, 300 - blueHeight, 144, blueHeight)
 
-		const redHeight = statistics.red / statistics[max] * 85
+		const redHeight = statistics.red / statistics[max] * 270
 		ctx.fillStyle = '#f55'
-		ctx.fillRect(292, 100 - redHeight, 75, redHeight)
+		ctx.fillRect(468, 300 - redHeight, 144, redHeight)
 
-		ctx.strokeRect(0, 0, 400, 100)
+		ctx.strokeRect(0, 0, 640, 300)
 
 		document.querySelector('td.green').textContent = statistics.green
 		document.querySelector('td.blue').textContent = statistics.blue

@@ -1,4 +1,4 @@
-# AllTheButtons.io
+# All The Buttons
 
 All The Buttons is a web app / art project which consists of an infinite grid of buttons that users can press to change colors, broadcasting their presses immediately to anyone else connected to the app. Pressing a white button turns it green, and long pressing turns it blue. Red is obtained by both pressing and long pressing a button. The buttons are stored in a custom built database that stores 4 buttons per byte to minimize file size.
 
@@ -28,7 +28,10 @@ I wrote a module to make scrolling in any direction easier by implementing edge 
 
 Back End
 --------
-The back end is a Node web server using the Diet.js framework, which I chose over Express for its native support of virtual hosting, so I can serve a bunch of websites from one server without bothering with something like a reverse proxy. More specifically, I'm able to serve it alongside other websites in my [diet-vhost](https://github.com/cutejs/diet-vhost) platform.
+The back end is a Node web server. The framework I built it with became abandonware
+so in the latest reweite it's all done "by hand" for better or for worse. It's basically just a
+static file server with socket events though so maybe we never needed a
+framework in the first place. 
 
 Socket.io is used to transfer button data and button presses to and from the server.
 
